@@ -13,7 +13,7 @@ Inspired by Tarasov Aleksandr's [PipeWire Soundpad](https://github.com/arabianq/
 # why?
 Why NOT
 
-## How 2 install
+# How 2 install
 1. Go to releases
 2. Download for your OS
 3. done
