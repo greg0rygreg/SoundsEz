@@ -2,7 +2,7 @@ extends PanelContainer
 class_name AudioFilePlayback
 
 @onready var current_time_label := $margineer/vercont/playtime/cur
-@onready var current_time := {"hour": 0, "minute": 0, "second": 0}
+@onready var current_time := {"hour": 0, "minute": 0, "second": 0, "msec": 0}
 @onready var current_time_slider := $margineer/vercont/timeslider
 @export var playback: AudioStreamPlayer
 @export var track_label: Label

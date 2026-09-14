@@ -16,12 +16,12 @@ Made with L❤️VE by G.T. Greg Games
 Why NOT
 
 # How 2 install
-## Simple (pre-compiled binaries)
+## Simple (pre-compiled binaries, unlatest but stablest)
 1. Go to latest release
 2. Download for your OS
 3. done
 
-## Advanced (compiling from source)
+## Advanced (compiling from source, latest but unstablest)
 ### Windows
 NOT fully sure yet
 
