@@ -13,13 +13,16 @@ var dragging := false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
   var time := Time.get_time_dict_from_unix_time(playback.stream.get_length())
+  time["msec"] = wrapf(playback.stream.get_length(), 0, 1) * 100
   current_time_slider.max_value = playback.stream.get_length()
-  $margineer/vercont/playtime/max.text = "%d:%s%d:%s%d" % [
+  $margineer/vercont/playtime/max.text = "%d:%s%d:%s%d.%s%d" % [
     time["hour"],
     "0" if time["minute"] < 10 else "",
     time["minute"],
     "0" if time["second"] < 10 else "",
-    time["second"]
+    time["second"],
+    "0" if time["msec"] < 10 else "",
+    time["msec"]
   ]
   
   current_time_slider.connect("drag_started", func(): dragging = true)
@@ -46,12 +49,15 @@ func _on_playback_finished() -> void:
 
 func _process(_delta: float) -> void:
   current_time = Time.get_time_dict_from_unix_time(playback.get_playback_position())
-  current_time_label.text = "%d:%s%d:%s%d" % [
+  current_time["msec"] = wrapf(playback.get_playback_position(), 0, 1) * 100
+  current_time_label.text = "%d:%s%d:%s%d.%s%d" % [
     current_time["hour"],
     "0" if current_time["minute"] < 10 else "",
     current_time["minute"],
     "0" if current_time["second"] < 10 else "",
-    current_time["second"]
+    current_time["second"],
+    "0" if current_time["msec"] < 10 else "",
+    current_time["msec"]
   ]
   if !dragging:
     current_time_slider.value = playback.get_playback_position()
