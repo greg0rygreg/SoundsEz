@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://bvghq327ugprf"]
 
 [ext_resource type="Script" uid="uid://b0fuwhv5xsa3q" path="res://audio_file_playback/script.gd" id="1_masti"]
-[ext_resource type="AudioStream" uid="uid://c412bexjttrse" path="res://other/sample.wav" id="2_kpdsn"]
 
 [node name="AFP" type="PanelContainer" unique_id=1222477020 node_paths=PackedStringArray("playback", "track_label", "looping", "volume")]
 script = ExtResource("1_masti")
@@ -80,7 +79,6 @@ layout_mode = 2
 text = "%"
 
 [node name="playback" type="AudioStreamPlayer" parent="." unique_id=601246804]
-stream = ExtResource("2_kpdsn")
 autoplay = true
 
 [connection signal="finished" from="playback" to="." method="_on_playback_finished"]
