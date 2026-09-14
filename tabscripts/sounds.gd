@@ -27,8 +27,16 @@ func _ready() -> void:
 
 func _on_newaf_files_selected(paths: PackedStringArray) -> void:
   for path in paths:
-    if path not in brain.data["files"]:
-      brain.data["files"].append(path)
+    match path.get_extension():
+      "wav", "mp3", "ogg":
+        if path not in brain.data["files"]:
+          brain.data["files"].append(path)
+      _:
+        EasyNotify.add_notification({
+          "title": "What are you doing",
+          "message": "Failed to load %s" % path,
+          "duration": 3
+        })
   reload_filelist()
 
 func _on_rem_pressed() -> void:
@@ -47,6 +55,7 @@ func _on_rem_pressed() -> void:
 func _on_list_item_activated(index: int) -> void:
   var temp: AudioFilePlayback = afp_scn.instantiate()
   var stream_temp: AudioStream
+  var fail := false
   match filelist.get_item_text(index).get_extension():
     "wav":
       stream_temp = AudioStreamWAV.load_from_file(filelist.get_item_text(index))
@@ -56,18 +65,32 @@ func _on_list_item_activated(index: int) -> void:
       stream_temp = AudioStreamMP3.load_from_file(filelist.get_item_text(index))
     _:
       EasyNotify.add_notification({
-        "title": "Uh...oh!",
-        "message": "Failed to load and import file",
-        "duration": 5
+        "title": "what the fuck",
+        "message": "i ain't loading ts gng",
+        "duration": 3
       })
+      fail = true
   
-  temp.playback.stream = stream_temp
-  temp.track_label.text = filelist.get_item_text(index)
-  temp.looping.button_pressed = $horcont/player/next/loop.button_pressed
-  temp.volume.value = $horcont/player/next/volume.value
-  playlist.add_child(temp)
+  if !fail:
+    temp.playback.stream = stream_temp
+    temp.track_label.text = filelist.get_item_text(index)
+    temp.looping.button_pressed = $horcont/player/next/loop.button_pressed
+    temp.volume.value = $horcont/player/next/volume.value
+    playlist.add_child(temp)
 
 func _on_ohno_pressed() -> void:
   for y: AudioFilePlayback in playlist.get_children():
     y.volume.value = $horcont/player/next/volume.value
     y.looping.button_pressed = $horcont/player/next/loop.button_pressed
+
+func _on_pauseall_pressed() -> void:
+  for y: AudioFilePlayback in playlist.get_children():
+    y.playback.stream_paused = true
+
+func _on_resumeall_pressed() -> void:
+  for y: AudioFilePlayback in playlist.get_children():
+    y.playback.stream_paused = false
+
+func _on_stopall_pressed() -> void:
+  for y: AudioFilePlayback in playlist.get_children():
+    y.queue_free()
