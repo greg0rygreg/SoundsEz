@@ -3,6 +3,8 @@ FOS (Free and Open Source) AiO Solution for micspamming TTS and Sounds/Music
 
 Inspired by Tarasov Aleksandr's [PipeWire Soundpad](https://github.com/arabianq/pipewire-soundpad) and Sebastian Macke's [Software Automatic Mouth](https://github.com/s-macke/SAM) (though this uses [espeak-ng](https://github.com/espeak-ng/espeak-ng))
 
+itch.io link: https://greg0rygreg.itch.io/soundsez
+
 Made with L❤️VE by G.T. Greg Games
 
 # Features
