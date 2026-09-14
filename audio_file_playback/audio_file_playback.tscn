@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://bvghq327ugprf"]
+
+[ext_resource type="Script" uid="uid://b0fuwhv5xsa3q" path="res://audio_file_playback/script.gd" id="1_masti"]
+[ext_resource type="AudioStream" uid="uid://c412bexjttrse" path="res://other/sample.wav" id="2_kpdsn"]
+
+[node name="AFP" type="PanelContainer" unique_id=1222477020 node_paths=PackedStringArray("playback", "track_label", "looping", "volume")]
+script = ExtResource("1_masti")
+playback = NodePath("playback")
+track_label = NodePath("margineer/vercont/name")
+looping = NodePath("margineer/vercont/ctrls/loop")
+volume = NodePath("margineer/vercont/ctrls/volume/SpinBox")
+
+[node name="margineer" type="MarginContainer" parent="." unique_id=1410731753]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="vercont" type="VBoxContainer" parent="margineer" unique_id=973486052]
+layout_mode = 2
+
+[node name="name" type="Label" parent="margineer/vercont" unique_id=1591179155]
+layout_mode = 2
+text = "audio_name"
+autowrap_mode = 3
+
+[node name="playtime" type="HBoxContainer" parent="margineer/vercont" unique_id=1355433624]
+layout_mode = 2
+
+[node name="cur" type="Label" parent="margineer/vercont/playtime" unique_id=1227218504]
+layout_mode = 2
+text = "-:-:-.-"
+
+[node name="sep" type="VSeparator" parent="margineer/vercont/playtime" unique_id=1628212634]
+layout_mode = 2
+
+[node name="max" type="Label" parent="margineer/vercont/playtime" unique_id=573101462]
+layout_mode = 2
+text = "-:-:-.-"
+
+[node name="timeslider" type="HSlider" parent="margineer/vercont" unique_id=1374952395]
+layout_mode = 2
+step = 0.0
+
+[node name="ctrls" type="HBoxContainer" parent="margineer/vercont" unique_id=1830470451]
+layout_mode = 2
+
+[node name="pause" type="Button" parent="margineer/vercont/ctrls" unique_id=702369438]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "⏯️ Pause/Resume"
+
+[node name="stop" type="Button" parent="margineer/vercont/ctrls" unique_id=298381002]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "🛑 Stop"
+
+[node name="loop" type="CheckBox" parent="margineer/vercont/ctrls" unique_id=1847908017]
+layout_mode = 2
+text = "Loop"
+
+[node name="sep" type="VSeparator" parent="margineer/vercont/ctrls" unique_id=760483923]
+layout_mode = 2
+
+[node name="volume" type="HBoxContainer" parent="margineer/vercont/ctrls" unique_id=1819930795]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="margineer/vercont/ctrls/volume" unique_id=1797291693]
+layout_mode = 2
+text = "Volume: "
+
+[node name="SpinBox" type="SpinBox" parent="margineer/vercont/ctrls/volume" unique_id=25565279]
+layout_mode = 2
+max_value = 200.0
+value = 100.0
+
+[node name="Label2" type="Label" parent="margineer/vercont/ctrls/volume" unique_id=331388085]
+layout_mode = 2
+text = "%"
+
+[node name="playback" type="AudioStreamPlayer" parent="." unique_id=601246804]
+stream = ExtResource("2_kpdsn")
+autoplay = true
+
+[connection signal="finished" from="playback" to="." method="_on_playback_finished"]

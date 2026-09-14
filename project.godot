@@ -1,0 +1,59 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="SoundsEz"
+config/description="AIO Solution for TTS and Sounds"
+config/version="0.1.0"
+run/main_scene="res://main.tscn"
+run/use_game_mode=false
+config/use_custom_user_dir=true
+config/custom_user_dir_name="GTGreg/SoundsEz"
+config/features=PackedStringArray("4.8", "Forward Plus")
+boot_splash/stretch_mode=0
+boot_splash/use_filter=false
+boot_splash/image="uid://d4keomw1wffke"
+config/icon="uid://8svsnotoy77x"
+
+[autoload]
+
+EasyNotify="*res://addons/easynotify/easynotify.tscn"
+
+[display]
+
+window/subwindows/embed_subwindows=false
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
+[editor]
+
+export/convert_text_resources_to_binary=false
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/easynotify/plugin.cfg")
+
+[gui]
+
+common/auto_focus_strategy=1
+
+[input_devices]
+
+joypads/ignore_joypad_on_unfocused_application=true
+
+[physics]
+
+3d/physics_engine="Jolt Physics"
+
+[rendering]
+
+rendering_device/driver.windows="d3d12"
+lights_and_shadows/multi_bounce_occlusion/enabled=true

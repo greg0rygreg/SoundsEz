@@ -1,0 +1,528 @@
+[gd_scene format=3 uid="uid://cjqlqlxinm3lo"]
+
+[ext_resource type="Script" uid="uid://b4v3vtwu3o8am" path="res://tabscripts/brain.gd" id="1_ig7tw"]
+[ext_resource type="Shader" uid="uid://ca81jef3a2thf" path="res://invert.gdshader" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://2n1dd7fw2nv0" path="res://tabscripts/tts.gd" id="2_h2yge"]
+[ext_resource type="Script" uid="uid://btx4vxqvpboxr" path="res://tabscripts/settings.gd" id="3_1bvp3"]
+[ext_resource type="Script" uid="uid://ddjj31wp82xbc" path="res://tabscripts/sounds.gd" id="3_7mycd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0xm2m"]
+shader = ExtResource("2_0xm2m")
+
+[node name="main" type="Control" unique_id=1859621149]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ig7tw")
+
+[node name="tabs" type="TabContainer" parent="." unique_id=875221562]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 1
+tab_0/title = "🤖 Text-to-Speech"
+tab_1/title = "🔊 Soundpad"
+tab_2/title = "⚙️ Settings"
+tab_3/hidden = true
+
+[node name="tts" type="MarginContainer" parent="tabs" unique_id=1342100132]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+script = ExtResource("2_h2yge")
+metadata/_tab_index = 0
+metadata/_tab_name = "🤖 Text-to-Speech"
+
+[node name="horcont" type="HBoxContainer" parent="tabs/tts" unique_id=1715007392]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="vercont" type="VBoxContainer" parent="tabs/tts/horcont" unique_id=1596704039]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="langsT" type="Label" parent="tabs/tts/horcont/vercont" unique_id=304010773]
+layout_mode = 2
+text = "Language:"
+autowrap_mode = 3
+
+[node name="langs" type="ItemList" parent="tabs/tts/horcont/vercont" unique_id=272717215]
+layout_mode = 2
+size_flags_vertical = 3
+item_count = 8
+item_0/text = "en-gb"
+item_1/text = "en-us"
+item_2/text = "en-gb-scotland"
+item_3/text = "en-gb-x-gbclan"
+item_4/text = "en-gb-x-gbcwmd"
+item_5/text = "en-029"
+item_6/text = "en-shaw"
+item_7/text = "en-us-nyc"
+
+[node name="varsT" type="Label" parent="tabs/tts/horcont/vercont" unique_id=1853701071]
+layout_mode = 2
+text = "Variants:"
+autowrap_mode = 3
+
+[node name="vars" type="ItemList" parent="tabs/tts/horcont/vercont" unique_id=832321265]
+layout_mode = 2
+size_flags_vertical = 3
+item_count = 104
+item_0/text = "Adam"
+item_1/text = "Alex"
+item_2/text = "Alicia"
+item_3/text = "Andrea"
+item_4/text = "Andy"
+item_5/text = "Annie"
+item_6/text = "Antonio"
+item_7/text = "Auntie"
+item_8/text = "Belinda"
+item_9/text = "Benjamin"
+item_10/text = "Boris"
+item_11/text = "Caleb"
+item_12/text = "David"
+item_13/text = "Demonic"
+item_14/text = "Denis"
+item_15/text = "Diogo"
+item_16/text = "Ed"
+item_17/text = "Edward"
+item_18/text = "Edward2"
+item_19/text = "Gene"
+item_20/text = "Gene2"
+item_21/text = "Gustave"
+item_22/text = "Half-LifeAnnouncementSystem"
+item_23/text = "Henrique"
+item_24/text = "Hugo"
+item_25/text = "Ian"
+item_26/text = "Iven"
+item_27/text = "Iven2"
+item_28/text = "Iven3"
+item_29/text = "Iven4"
+item_30/text = "Jacky"
+item_31/text = "John"
+item_32/text = "Kaukovalta"
+item_33/text = "Lee"
+item_34/text = "Linda"
+item_35/text = "Marcelo"
+item_36/text = "Marco"
+item_37/text = "Mario"
+item_38/text = "Max"
+item_39/text = "Michael"
+item_40/text = "Michel"
+item_41/text = "Miguel"
+item_42/text = "Mike"
+item_43/text = "Mike2"
+item_44/text = "Mr_Serious"
+item_45/text = "Nguyen"
+item_46/text = "Pablo"
+item_47/text = "Paul"
+item_48/text = "Pedro"
+item_49/text = "Quincy"
+item_50/text = "Reed"
+item_51/text = "RicishayMax"
+item_52/text = "RicishayMax2"
+item_53/text = "RicishayMax3"
+item_54/text = "Rob"
+item_55/text = "Robert"
+item_56/text = "Robosoft"
+item_57/text = "Robosoft2"
+item_58/text = "Robosoft3"
+item_59/text = "Robosoft4"
+item_60/text = "Robosoft5"
+item_61/text = "Robosoft6"
+item_62/text = "Robosoft7"
+item_63/text = "Robosoft8"
+item_64/text = "Steph"
+item_65/text = "Steph2"
+item_66/text = "Steph3"
+item_67/text = "Storm"
+item_68/text = "Tweaky"
+item_69/text = "UniversalRobot"
+item_70/text = "Zac"
+item_71/text = "anika"
+item_72/text = "anikaRobot"
+item_73/text = "anxiousAndy"
+item_74/text = "fast_test"
+item_75/text = "female2"
+item_76/text = "female3"
+item_77/text = "female4"
+item_78/text = "female5"
+item_79/text = "female_whisper"
+item_80/text = "grandpa"
+item_81/text = "klatt"
+item_82/text = "klatt2"
+item_83/text = "klatt3"
+item_84/text = "klatt4"
+item_85/text = "klatt5"
+item_86/text = "klatt6"
+item_87/text = "male2"
+item_88/text = "male3"
+item_89/text = "male4"
+item_90/text = "male5"
+item_91/text = "male6"
+item_92/text = "male7"
+item_93/text = "norbert"
+item_94/text = "sandro"
+item_95/text = "shelby"
+item_96/text = "travis"
+item_97/text = "victor"
+item_98/text = "whisper"
+item_99/text = "male8"
+item_100/text = "female1"
+item_101/text = "croak"
+item_102/text = "male1"
+item_103/text = "grandma"
+
+[node name="ctrls" type="HBoxContainer" parent="tabs/tts/horcont/vercont" unique_id=1620611857]
+layout_mode = 2
+alignment = 1
+
+[node name="volume" type="HBoxContainer" parent="tabs/tts/horcont/vercont/ctrls" unique_id=1458794062]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="Label" type="Label" parent="tabs/tts/horcont/vercont/ctrls/volume" unique_id=1699286474]
+layout_mode = 2
+text = "Volume: "
+
+[node name="SpinBox" type="SpinBox" parent="tabs/tts/horcont/vercont/ctrls/volume" unique_id=1185458075]
+layout_mode = 2
+max_value = 200.0
+value = 100.0
+
+[node name="pitch" type="HBoxContainer" parent="tabs/tts/horcont/vercont/ctrls" unique_id=1418814302]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="Label" type="Label" parent="tabs/tts/horcont/vercont/ctrls/pitch" unique_id=649317127]
+layout_mode = 2
+text = "Pitch: "
+
+[node name="SpinBox" type="SpinBox" parent="tabs/tts/horcont/vercont/ctrls/pitch" unique_id=1440904222]
+layout_mode = 2
+max_value = 99.0
+value = 50.0
+
+[node name="rate" type="HBoxContainer" parent="tabs/tts/horcont/vercont/ctrls" unique_id=1987110214]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="Label" type="Label" parent="tabs/tts/horcont/vercont/ctrls/rate" unique_id=808121334]
+layout_mode = 2
+text = "WPMish"
+
+[node name="SpinBox" type="SpinBox" parent="tabs/tts/horcont/vercont/ctrls/rate" unique_id=597645398]
+layout_mode = 2
+min_value = 1.0
+max_value = 1000.0
+value = 175.0
+
+[node name="vercont2" type="VBoxContainer" parent="tabs/tts/horcont" unique_id=1357702155]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="textT" type="Label" parent="tabs/tts/horcont/vercont2" unique_id=1477926411]
+layout_mode = 2
+text = "Text:"
+
+[node name="text" type="TextEdit" parent="tabs/tts/horcont/vercont2" unique_id=1774930907]
+layout_mode = 2
+size_flags_vertical = 3
+placeholder_text = "The FitnessGram Pacer test is a multistage aerobic capacity test that progressively gets more difficult as it continues. The 20 meter Pacer test will begin in 30 seconds. Line up at the start. The running speed starts slowly, but gets faster each minute after you hear this signal *boop*. A single lap should be completed each time you hear this sound *ding*. Remember to run in a straight line, and run as long as possible. The second time you fail to complete a lap before the sound, your test is over. The test will begin on the word start. On your mark, get ready, start."
+wrap_mode = 1
+
+[node name="histT" type="Label" parent="tabs/tts/horcont/vercont2" unique_id=72278427]
+layout_mode = 2
+text = "History:"
+
+[node name="hist" type="ItemList" parent="tabs/tts/horcont/vercont2" unique_id=578430288]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="audio" type="HBoxContainer" parent="tabs/tts/horcont/vercont2" unique_id=2146484264]
+layout_mode = 2
+
+[node name="play" type="Button" parent="tabs/tts/horcont/vercont2/audio" unique_id=1223445503]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "▶️ Speak"
+
+[node name="stop" type="Button" parent="tabs/tts/horcont/vercont2/audio" unique_id=1644165097]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "🛑 Silence Everyone"
+
+[node name="clear" type="Button" parent="tabs/tts/horcont/vercont2" unique_id=985467208]
+layout_mode = 2
+text = "🗑️ Clear history"
+
+[node name="sounds" type="MarginContainer" parent="tabs" unique_id=491676046]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+script = ExtResource("3_7mycd")
+metadata/_tab_index = 1
+metadata/_tab_name = "🔊 Soundpad"
+
+[node name="horcont" type="HBoxContainer" parent="tabs/sounds" unique_id=405493484]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="files" type="VBoxContainer" parent="tabs/sounds/horcont" unique_id=1109407318]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="listT" type="Label" parent="tabs/sounds/horcont/files" unique_id=277304375]
+layout_mode = 2
+text = "Audio files:"
+
+[node name="list" type="ItemList" parent="tabs/sounds/horcont/files" unique_id=551197936]
+layout_mode = 2
+size_flags_vertical = 3
+select_mode = 1
+
+[node name="actions" type="HBoxContainer" parent="tabs/sounds/horcont/files" unique_id=734944502]
+layout_mode = 2
+
+[node name="add" type="Button" parent="tabs/sounds/horcont/files/actions" unique_id=905345715]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "➕ Add new audio file(s)"
+
+[node name="reload" type="Button" parent="tabs/sounds/horcont/files/actions" unique_id=1319392955]
+layout_mode = 2
+text = "🔃 Reload list"
+
+[node name="rem" type="Button" parent="tabs/sounds/horcont/files/actions" unique_id=225434431]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "🗑️ Remove selected audio file(s)"
+
+[node name="player" type="VBoxContainer" parent="tabs/sounds/horcont" unique_id=841385242]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="playingT" type="Label" parent="tabs/sounds/horcont/player" unique_id=798419625]
+layout_mode = 2
+text = "Playlist:"
+
+[node name="playing" type="PanelContainer" parent="tabs/sounds/horcont/player" unique_id=1611323343]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="scrollcont" type="ScrollContainer" parent="tabs/sounds/horcont/player/playing" unique_id=341594284]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="margineer" type="MarginContainer" parent="tabs/sounds/horcont/player/playing/scrollcont" unique_id=306804328]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="vercont" type="VBoxContainer" parent="tabs/sounds/horcont/player/playing/scrollcont/margineer" unique_id=1753890810]
+layout_mode = 2
+
+[node name="ohno" type="Button" parent="tabs/sounds/horcont/player" unique_id=211373410]
+layout_mode = 2
+text = "⚠️ Apply \"Next\" to every audio file playing"
+
+[node name="next" type="HBoxContainer" parent="tabs/sounds/horcont/player" unique_id=1056657285]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="tabs/sounds/horcont/player/next" unique_id=401555236]
+layout_mode = 2
+text = "Next: "
+
+[node name="loop" type="CheckBox" parent="tabs/sounds/horcont/player/next" unique_id=1823885496]
+layout_mode = 2
+text = "Loop"
+
+[node name="VSeparator" type="VSeparator" parent="tabs/sounds/horcont/player/next" unique_id=1991758556]
+layout_mode = 2
+
+[node name="volumeT" type="Label" parent="tabs/sounds/horcont/player/next" unique_id=874525649]
+layout_mode = 2
+text = "Volume: "
+
+[node name="volume" type="SpinBox" parent="tabs/sounds/horcont/player/next" unique_id=479093245]
+layout_mode = 2
+max_value = 200.0
+value = 100.0
+
+[node name="Label2" type="Label" parent="tabs/sounds/horcont/player/next" unique_id=523183922]
+layout_mode = 2
+text = "%"
+
+[node name="sets" type="MarginContainer" parent="tabs" unique_id=247406521]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+script = ExtResource("3_1bvp3")
+metadata/_tab_index = 2
+metadata/_tab_name = "⚙️ Settings"
+
+[node name="vercont" type="VBoxContainer" parent="tabs/sets" unique_id=541744565]
+layout_mode = 2
+
+[node name="actions" type="HBoxContainer" parent="tabs/sets/vercont" unique_id=1341667901]
+layout_mode = 2
+
+[node name="apply" type="Button" parent="tabs/sets/vercont/actions" unique_id=274354298]
+layout_mode = 2
+text = "✅ Apply"
+
+[node name="theme" type="HBoxContainer" parent="tabs/sets/vercont" unique_id=928849742]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="tabs/sets/vercont/theme" unique_id=883668809]
+layout_mode = 2
+text = "Theme: 🌙"
+
+[node name="CheckButton" type="CheckButton" parent="tabs/sets/vercont/theme" unique_id=938430802]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="tabs/sets/vercont/theme" unique_id=1001826850]
+layout_mode = 2
+text = "☀️"
+
+[node name="outsT" type="Label" parent="tabs/sets/vercont" unique_id=1407145717]
+layout_mode = 2
+text = "Output:"
+
+[node name="outs" type="OptionButton" parent="tabs/sets/vercont" unique_id=376284391]
+layout_mode = 2
+disabled = true
+
+[node name="HSeparator" type="HSeparator" parent="tabs/sets/vercont" unique_id=945092927]
+layout_mode = 2
+
+[node name="soundpadT" type="Label" parent="tabs/sets/vercont" unique_id=549940772]
+layout_mode = 2
+text = "Soundpad:"
+
+[node name="defloop" type="HBoxContainer" parent="tabs/sets/vercont" unique_id=980881147]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="tabs/sets/vercont/defloop" unique_id=1532935056]
+layout_mode = 2
+text = "Default loop:"
+
+[node name="CheckBox" type="CheckBox" parent="tabs/sets/vercont/defloop" unique_id=704562372]
+layout_mode = 2
+
+[node name="defvolume" type="HBoxContainer" parent="tabs/sets/vercont" unique_id=891063277]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="tabs/sets/vercont/defvolume" unique_id=211688373]
+layout_mode = 2
+text = "Default volume:"
+
+[node name="SpinBox" type="SpinBox" parent="tabs/sets/vercont/defvolume" unique_id=349045800]
+layout_mode = 2
+max_value = 200.0
+value = 100.0
+
+[node name="Label2" type="Label" parent="tabs/sets/vercont/defvolume" unique_id=247834513]
+layout_mode = 2
+text = "%"
+
+[node name="secret" type="VBoxContainer" parent="tabs" unique_id=1909342527]
+visible = false
+layout_mode = 2
+alignment = 1
+metadata/_tab_index = 3
+
+[node name="Label" type="Label" parent="tabs/secret" unique_id=679880010]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 64
+text = "How the hell do you not have any audio outputs?"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="actions" type="HBoxContainer" parent="." unique_id=917754968]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+mouse_filter = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="actions" unique_id=960061991]
+layout_mode = 2
+text = "I don't need keybinds where I'm going."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="info" type="Button" parent="actions" unique_id=1438500566]
+layout_mode = 2
+text = "Info"
+
+[node name="info" type="AcceptDialog" parent="." unique_id=1584233170]
+oversampling_override = 1.0
+title = "Information"
+initial_position = 2
+size = Vector2i(433, 262)
+ok_button_text = "uh huh.."
+dialog_text = "FOS AiO solution for micspamming TTS or sounds
+Licensed under the MIT license
+
+Thank you:
+    IUXGames - EasyNotify plugin
+    Jonathan Duddington and the eSpeak NG Team - TTS functionality
+
+Inspired by Tarasov Aleksandr's PipeWire SoundPad:
+    https://github.com/arabianq/pipewire-soundpad
+and Sebastian Macke's Software Automatic Mouth:
+    https://github.com/s-macke/SAM
+
+Made by G. Greg, from G.T. Greg Games, with L❤️VE"
+
+[node name="theme" type="ColorRect" parent="." unique_id=1325549029]
+visible = false
+material = SubResource("ShaderMaterial_0xm2m")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[node name="newaf" type="FileDialog" parent="." unique_id=509792580]
+oversampling_override = 1.0
+title = "Open File(s)"
+initial_position = 2
+file_mode = 1
+access = 2
+filters = PackedStringArray("*.wav", "*.mp3", "*.ogg")
+use_native_dialog = true
+
+[connection signal="item_activated" from="tabs/tts/horcont/vercont2/hist" to="tabs/tts" method="_on_hist_item_activated"]
+[connection signal="pressed" from="tabs/tts/horcont/vercont2/audio/play" to="tabs/tts" method="_on_play_pressed"]
+[connection signal="item_activated" from="tabs/sounds/horcont/files/list" to="tabs/sounds" method="_on_list_item_activated"]
+[connection signal="pressed" from="tabs/sounds/horcont/files/actions/rem" to="tabs/sounds" method="_on_rem_pressed"]
+[connection signal="pressed" from="tabs/sounds/horcont/player/ohno" to="tabs/sounds" method="_on_ohno_pressed"]
+[connection signal="pressed" from="tabs/sets/vercont/actions/apply" to="tabs/sets" method="_on_apply_pressed"]
+[connection signal="files_selected" from="newaf" to="tabs/sounds" method="_on_newaf_files_selected"]
