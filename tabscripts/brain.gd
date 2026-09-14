@@ -48,7 +48,7 @@ func _ready() -> void:
   })
 
   # no outputs
-  if len(outputs) != 0:
+  if len(outputs) > 1:
     for out in outputs:
       tabs.get_node("sets/vercont/outs").add_item(out)
     tabs.get_node("sets/vercont/outs").disabled = false
