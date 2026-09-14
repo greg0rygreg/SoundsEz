@@ -25,7 +25,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-current_tab = 1
+current_tab = 2
 tab_0/title = "🤖 Text-to-Speech"
 tab_1/title = "🔊 Soundpad"
 tab_2/title = "⚙️ Settings"
@@ -44,7 +44,6 @@ metadata/_tab_name = "🤖 Text-to-Speech"
 
 [node name="horcont" type="HBoxContainer" parent="tabs/tts" unique_id=1715007392]
 layout_mode = 2
-theme_override_constants/separation = 16
 
 [node name="vercont" type="VBoxContainer" parent="tabs/tts/horcont" unique_id=1596704039]
 layout_mode = 2
@@ -226,6 +225,9 @@ min_value = 1.0
 max_value = 1000.0
 value = 175.0
 
+[node name="sep" type="VSeparator" parent="tabs/tts/horcont" unique_id=1562720003]
+layout_mode = 2
+
 [node name="vercont2" type="VBoxContainer" parent="tabs/tts/horcont" unique_id=1357702155]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -248,24 +250,25 @@ text = "History:"
 layout_mode = 2
 size_flags_vertical = 3
 
+[node name="clear" type="Button" parent="tabs/tts/horcont/vercont2" unique_id=985467208]
+layout_mode = 2
+text = "🗑️ Clear history"
+
 [node name="audio" type="HBoxContainer" parent="tabs/tts/horcont/vercont2" unique_id=2146484264]
 layout_mode = 2
 
 [node name="play" type="Button" parent="tabs/tts/horcont/vercont2/audio" unique_id=1223445503]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "▶️ Speak"
+text = "▶️ Make them Speak"
 
 [node name="stop" type="Button" parent="tabs/tts/horcont/vercont2/audio" unique_id=1644165097]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "🛑 Silence Everyone"
 
-[node name="clear" type="Button" parent="tabs/tts/horcont/vercont2" unique_id=985467208]
-layout_mode = 2
-text = "🗑️ Clear history"
-
 [node name="sounds" type="MarginContainer" parent="tabs" unique_id=491676046]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
@@ -277,7 +280,6 @@ metadata/_tab_name = "🔊 Soundpad"
 
 [node name="horcont" type="HBoxContainer" parent="tabs/sounds" unique_id=405493484]
 layout_mode = 2
-theme_override_constants/separation = 16
 
 [node name="files" type="VBoxContainer" parent="tabs/sounds/horcont" unique_id=1109407318]
 layout_mode = 2
@@ -309,6 +311,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "🗑️ Remove selected audio file(s)"
 
+[node name="sep" type="VSeparator" parent="tabs/sounds/horcont" unique_id=1808355417]
+layout_mode = 2
+
 [node name="player" type="VBoxContainer" parent="tabs/sounds/horcont" unique_id=841385242]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -337,9 +342,23 @@ theme_override_constants/margin_bottom = 8
 [node name="vercont" type="VBoxContainer" parent="tabs/sounds/horcont/player/playing/scrollcont/margineer" unique_id=1753890810]
 layout_mode = 2
 
-[node name="ohno" type="Button" parent="tabs/sounds/horcont/player" unique_id=211373410]
+[node name="globalctrl" type="HBoxContainer" parent="tabs/sounds/horcont/player" unique_id=384710465]
 layout_mode = 2
-text = "⚠️ Apply \"Next\" to every audio file playing"
+
+[node name="pauseall" type="Button" parent="tabs/sounds/horcont/player/globalctrl" unique_id=20332690]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "⏸️ Pause Everything"
+
+[node name="resumeall" type="Button" parent="tabs/sounds/horcont/player/globalctrl" unique_id=1860681653]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "▶️ Resume Everything"
+
+[node name="stopall" type="Button" parent="tabs/sounds/horcont/player/globalctrl" unique_id=1720587752]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "🛑 Stop Everything"
 
 [node name="next" type="HBoxContainer" parent="tabs/sounds/horcont/player" unique_id=1056657285]
 layout_mode = 2
@@ -369,8 +388,11 @@ value = 100.0
 layout_mode = 2
 text = "%"
 
+[node name="ohno" type="Button" parent="tabs/sounds/horcont/player" unique_id=211373410]
+layout_mode = 2
+text = "⚠️ Apply \"Next\" to every audio file playing"
+
 [node name="sets" type="MarginContainer" parent="tabs" unique_id=247406521]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
@@ -390,15 +412,17 @@ layout_mode = 2
 layout_mode = 2
 text = "✅ Apply"
 
+[node name="sorry" type="Label" parent="tabs/sets/vercont" unique_id=1399936915]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "I promise I'm gonna make this tab prettier next release or so"
+
 [node name="theme" type="HBoxContainer" parent="tabs/sets/vercont" unique_id=928849742]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="tabs/sets/vercont/theme" unique_id=883668809]
-layout_mode = 2
-text = "Theme: 🌙"
-
 [node name="CheckButton" type="CheckButton" parent="tabs/sets/vercont/theme" unique_id=938430802]
 layout_mode = 2
+text = "Theme: 🌙"
 
 [node name="Label2" type="Label" parent="tabs/sets/vercont/theme" unique_id=1001826850]
 layout_mode = 2
@@ -523,6 +547,9 @@ use_native_dialog = true
 [connection signal="pressed" from="tabs/tts/horcont/vercont2/audio/play" to="tabs/tts" method="_on_play_pressed"]
 [connection signal="item_activated" from="tabs/sounds/horcont/files/list" to="tabs/sounds" method="_on_list_item_activated"]
 [connection signal="pressed" from="tabs/sounds/horcont/files/actions/rem" to="tabs/sounds" method="_on_rem_pressed"]
+[connection signal="pressed" from="tabs/sounds/horcont/player/globalctrl/pauseall" to="tabs/sounds" method="_on_pauseall_pressed"]
+[connection signal="pressed" from="tabs/sounds/horcont/player/globalctrl/resumeall" to="tabs/sounds" method="_on_resumeall_pressed"]
+[connection signal="pressed" from="tabs/sounds/horcont/player/globalctrl/stopall" to="tabs/sounds" method="_on_stopall_pressed"]
 [connection signal="pressed" from="tabs/sounds/horcont/player/ohno" to="tabs/sounds" method="_on_ohno_pressed"]
 [connection signal="pressed" from="tabs/sets/vercont/actions/apply" to="tabs/sets" method="_on_apply_pressed"]
 [connection signal="files_selected" from="newaf" to="tabs/sounds" method="_on_newaf_files_selected"]
