@@ -12,7 +12,7 @@ config_version=5
 
 config/name="SoundsEz"
 config/description="AIO Solution for TTS and Sounds"
-config/version="0.1.1"
+config/version="0.1.1-e1"
 run/main_scene="res://main.tscn"
 run/use_game_mode=false
 config/use_custom_user_dir=true

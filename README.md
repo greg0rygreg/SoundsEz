@@ -63,7 +63,7 @@ Install pactl (pulseaudio-utils for every distro on [command-not-found.com](http
 # TODO
 - [x] Make this readme pretty
 - [ ] Fix some languages not being compatible with some variants
-- [ ] Make settings tab pretty
+- [x] Make settings tab pretty
 
 # Screenies
 ![text to speech](screenshots/tts.png)
