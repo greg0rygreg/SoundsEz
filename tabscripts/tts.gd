@@ -38,6 +38,9 @@ func _notification(what: int) -> void:
     for proc in rprocs:
       OS.kill(proc)
     rprocs.clear()
+    brain.data["tts"]["volume"] = $horcont/vercont/ctrls/volume/SpinBox.value
+    brain.data["tts"]["pitch"] = $horcont/vercont/ctrls/pitch/SpinBox.value
+    brain.data["tts"]["wpm"] = $horcont/vercont/ctrls/rate/SpinBox.value
 
 func __ready() -> void:
   if OS.execute("espeak-ng", ["-h"]) != 0:
@@ -45,7 +48,7 @@ func __ready() -> void:
     EasyNotify.add_notification({
       "title": "Uh...oh!",
       "message": "espeak-ng was not detected on your system:\nTTS functionality has been disabled",
-      "duration": 5.0
+      "duration": 3
     })
     brain.tabs.set_tab_disabled(0, true)
     brain.tabs.current_tab = 1
@@ -57,6 +60,9 @@ func __ready() -> void:
   $horcont/vercont2/clear.connect("pressed", tts_history.clear)
   $horcont/vercont/langs.select(0)
   $horcont/vercont/vars.select(0)
+  $horcont/vercont/ctrls/volume/SpinBox.value = brain.data["tts"]["volume"]
+  $horcont/vercont/ctrls/pitch/SpinBox.value = brain.data["tts"]["pitch"]
+  $horcont/vercont/ctrls/rate/SpinBox.value = brain.data["tts"]["wpm"]
 
 func _ready() -> void:
   call_deferred("__ready") # godot rapes my plans if i don't defer the call
