@@ -20,12 +20,13 @@ Made with L❤️VE by G.T. Greg Games
 - FitnessGram Pacer Test™ Transcription
 
 # why?
-Why NOT
+I'm greedy and I need TTS and soundpad in one program ONLY
 
 # Big thanks
-- Daenvil *et al.* for [MarkdownLabel](https://store.godotengine.org/asset/daenvil/markdownlabel/): https://github.com/daenvil/MarkdownLabel
-- eSpeak NG Team for [espeak-ng](https://sourceforge.net/app/espeak-ng/): https://github.com/espeak-ng/espeak-ng
-- Godot Game Engine Team for the [Godot Game Engine](https://godotengine.org): https://github.com/godotengine/godot/
+- IUXGames for [EasyNotify](https://godotengine.org/asset-library/asset/5073): [https://github.com/IUXGames/EasyNotify](https://github.com/IUXGames/EasyNotify)
+- Daenvil *et al.* for [MarkdownLabel](https://store.godotengine.org/asset/daenvil/markdownlabel): [https://github.com/daenvil/MarkdownLabel](https://github.com/daenvil/MarkdownLabel)
+- eSpeak NG Team for [espeak-ng](https://sourceforge.net/app/espeak-ng): [https://github.com/espeak-ng/espeak-ng](https://github.com/espeak-ng/espeak-ng)
+- Godot Game Engine Team for the [Godot Game Engine](https://godotengine.org): [https://github.com/godotengine/godot](https://github.com/godotengine/godot)
 
 # How 2 install
 You already did it
