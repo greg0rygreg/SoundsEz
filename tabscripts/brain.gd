@@ -1,64 +1,78 @@
 extends Control
 
 @onready var tabs := $tabs
-@onready var outputs := AudioServer.get_output_device_list()
+@onready var outputs: PackedStringArray
+@onready var conf := FileAccess.open("user://conf.json", FileAccess.READ)
 
 var data := {
   "lightmode": false,
   "files": [],
-  "volume": 1.,
-  "nextvol": 1.,
-  "nextloop": false
+  "sounds": {
+    "volume": 100,
+    "loop": false
+  },
+  "tts": {
+    "volume": 100,
+    "pitch": 50,
+    "wpm": 175
+  }
 }
+var soundsez_sink_id: int = -1
+
+func _notification(what: int) -> void:
+  if what == NOTIFICATION_WM_CLOSE_REQUEST:
+    OS.execute("pactl", ["unload-module", soundsez_sink_id])
 
 func _ready() -> void:
   get_tree().root.title = "%s %s" % [
     ProjectSettings.get_setting("application/config/name"),
     ProjectSettings.get_setting("application/config/version")
   ]
-  
-  $actions/info.connect("pressed", $info.popup_centered)
   tabs.current_tab = 0
+  
   print(OS.get_distribution_name())
-  if OS.get_name() == "Linux":
-    EasyNotify.add_notification({
-      "title": "You're using Linux!",
-      "message": "Install %s & run this in the terminal:\npactl load-module module-null-sink" % (
-        "pulseaudio-utils" if OS.get_distribution_name() not in ["Arch Linux", "Manjaro", "EndeavourOS", "CachyOS"] else "libpulse"
-      ),
-      "duration": 5
-    })
-  elif OS.get_name() == "Windows":
-    EasyNotify.add_notification({
-      "title": "You're using Windows!",
-      "message": "Install VB-Audio Virtual Cables",
-      "duration": 5
-    })
-  else:
-    EasyNotify.add_notification({
-      "title": "what the fuck",
-      "message": "i don't remember compiling SoundsEz for %s" % OS.get_name(),
-      "duration": 5
-    })
+  
+  if !conf:
+    var conftemp := FileAccess.open("user://conf.json", FileAccess.WRITE)
+    conftemp.store_string(JSON.stringify(data))
+    conftemp.close()
+    conf = FileAccess.open("user://conf.json", FileAccess.READ)
+  data = JSON.parse_string(conf.get_as_text())
+  
+  if !OS.has_feature("editor"):
+    data["files"] = data["files"].filter(func(x: String): return !x.begins_with("res://"))
+  data["files"] = data["files"].filter(func(x: String): return FileAccess.file_exists(x))
+  
+  match OS.get_name():
+    "Windows":
+      pass
+    "Linux":
+      var outtemp := []
+      OS.execute("pactl", [
+        "load-module",
+        "module-pipe-sink",
+        "sink_name='SoundsEz Audio Output'"
+      ], outtemp)
+      soundsez_sink_id = int(outtemp[0].strip_escapes())
+    _:
+      EasyNotify.add_notification({
+        "title": "what the fuck",
+        "message": "i don't remember compiling SoundsEz for %s" % OS.get_name(),
+        "duration": 3
+      })
+  outputs = AudioServer.get_output_device_list()
+  for out in outputs:
+    tabs.get_node("sets").outputs_button.add_item(out)
   
   EasyNotify.add_notification({
     "title": "TTS warning",
     "message": "Some languages aren't compatible with some variants & vice versa",
-    "duration": 5
+    "duration": 3
   })
-
-  # no outputs
-  if len(outputs) > 1:
-    for out in outputs:
-      tabs.get_node("sets/vercont/outs").add_item(out)
-    tabs.get_node("sets/vercont/outs").disabled = false
-  else:
-    EasyNotify.add_notification({
-      "title": "Uh...oh!",
-      "message": "No audio output was detected on your system:\nAll audio related functionality has been revoked",
-      "duration": 5.0
-    })
-    tabs.set_tab_disabled(0, true)
-    tabs.set_tab_disabled(1, true)
-    tabs.set_tab_hidden(3, false)
-    tabs.current_tab = 3
+  
+  var mdtemp := FileAccess.open("res://README.md", FileAccess.READ)
+  var mdtemp_txt := mdtemp.get_as_text()
+  var mdtemp_txt_split := mdtemp_txt.split("```")
+  mdtemp.close()
+  print(mdtemp_txt_split)
+  $tabs/info/MarkdownLabel.markdown_text = mdtemp_txt_split[0] + "(codeblocks aren't supported by MarkdownLabel, check it from [Github](https://github.com/greg0rygreg/SoundsEz#linux))" + mdtemp_txt_split[2]
