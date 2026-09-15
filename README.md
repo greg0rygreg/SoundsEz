@@ -17,6 +17,11 @@ Made with L❤️VE by G.T. Greg Games
 # why?
 Why NOT
 
+# Big thanks
+- Daenvil *et al.* for [MarkdownLabel](https://store.godotengine.org/asset/daenvil/markdownlabel/): https://github.com/daenvil/MarkdownLabel
+- eSpeak NG Team for [espeak-ng](https://sourceforge.net/app/espeak-ng/): https://github.com/espeak-ng/espeak-ng
+- Godot Game Engine Team for the [Godot Game Engine](https://godotengine.org): https://github.com/godotengine/godot/
+
 # How 2 install
 ## Simple (pre-compiled binaries, unlatest but stablest)
 1. Go to latest release
@@ -44,15 +49,16 @@ Install Visual C++ Redistributable (lastest worked for me (in a VM))
 ### 'espeak-ng not detected'
 install it dude what are you doing
 
-### 'no outputs detected'
-Are you sure you can even hear what sounds/music you were about to put in SoundsEz
-
 ## Linux
 ### 'espeak-ng not detected'
 install it dude what are you doing
 
-### 'no outputs detected'
-Are you sure you can even hear what sounds/music you were about to put in SoundsEz
+# Mentionables
+## Windows
+Install VB-Audio Cable to be able to micspam to apps or something idk
+
+## Linux
+Install pactl (pulseaudio-utils for every distro on [command-not-found.com](https://command-not-found.com/pactl) except Arch which is libpulse), SoundsEz will automatically generate a sink on startup
 
 # TODO
 - [x] Make this readme pretty
