@@ -1,36 +1,38 @@
 extends MarginContainer
 
 @onready var brain := get_tree().current_scene
-@onready var conf := FileAccess.open("user://conf.json", FileAccess.READ)
+@onready var outputs_button := $vercont/setstabs/general/vercont/outs/OptionButton
+@onready var theme_toggle := $vercont/setstabs/general/vercont/theme/CheckButton
+  
+func _on_visibility_changed() -> void:
+  if !visible: return
+  theme_toggle.button_pressed = brain.get_node("theme").visible
+  outputs_button.clear()
+  brain.outputs = AudioServer.get_output_device_list()
+  for out in brain.outputs:
+    outputs_button.add_item(out)
+  outputs_button.select(brain.outputs.find(AudioServer.output_device))
 
 func __ready() -> void:
-  if !conf:
-    var temp := FileAccess.open("user://conf.json", FileAccess.WRITE)
-    temp.store_string(JSON.stringify(brain.data))
-    temp.close()
-    conf = FileAccess.open("user://conf.json", FileAccess.READ)
-  brain.data = JSON.parse_string(conf.get_as_text())
-  $vercont/theme/CheckButton.button_pressed = brain.data["lightmode"]
-  $vercont/defloop/CheckBox.button_pressed = brain.data["nextloop"]
-  $vercont/defvolume/SpinBox.value = brain.data["nextvol"] * 100
-  if !OS.has_feature("editor"):
-    brain.data["files"] = brain.data["files"].filter(func(x: String): return !x.begins_with("res://"))
-  brain.data["files"] = brain.data["files"].filter(func(x: String): return FileAccess.file_exists(x))
+  theme_toggle.button_pressed = brain.data["lightmode"]
   print(OS.get_user_data_dir())
   applysets()
-    
+  visibility_changed.connect(_on_visibility_changed)
+
 func applysets():
-  brain.get_node("theme").visible = $vercont/theme/CheckButton.button_pressed
-  AudioServer.output_device = $vercont/outs.get_item_text($vercont/outs.selected)
+  brain.get_node("theme").visible = theme_toggle.button_pressed
+  AudioServer.output_device = outputs_button.get_item_text(outputs_button.selected)
 
 func _ready() -> void:
   call_deferred("__ready")
 
 func _on_apply_pressed() -> void:
-  brain.data["lightmode"] = $vercont/theme/CheckButton.button_pressed
-  brain.data["nextloop"] = $vercont/defloop/CheckBox.button_pressed
-  brain.data["nextvol"] = $vercont/defvolume/SpinBox.value / 100
+  brain.data["lightmode"] = theme_toggle.button_pressed
   applysets()
+
+func _on_reset_pressed() -> void:
+  theme_toggle.button_pressed = false
+  outputs_button.select(0)
 
 func _notification(what: int) -> void:
   if what == NOTIFICATION_WM_CLOSE_REQUEST:
