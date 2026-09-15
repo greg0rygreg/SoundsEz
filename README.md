@@ -1,7 +1,7 @@
 # 🔊 SoundsEz
 FOS (Free and Open Source) AiO Solution for micspamming TTS and Sounds/Music
 
-Inspired by Tarasov Aleksandr's [PipeWire Soundpad](https://github.com/arabianq/pipewire-soundpad) and Sebastian Macke's [Software Automatic Mouth](https://github.com/s-macke/SAM) (though this uses [espeak-ng](https://github.com/espeak-ng/espeak-ng))
+Originally called SAM2PWSP and made to route SAM output to PipeWire Soundpad, inspired by Tarasov Aleksandr's [PipeWire Soundpad](https://github.com/arabianq/pipewire-soundpad) and Sebastian Macke's [Software Automatic Mouth](https://github.com/s-macke/SAM)
 
 itch.io link: https://greg0rygreg.itch.io/soundsez
 
@@ -21,7 +21,7 @@ I'm greedy and I need TTS and soundpad in one program ONLY
 - IUXGames for [EasyNotify](https://godotengine.org/asset-library/asset/5073): https://github.com/IUXGames/EasyNotify
 - Daenvil *et al.* for [MarkdownLabel](https://store.godotengine.org/asset/daenvil/markdownlabel/): https://github.com/daenvil/MarkdownLabel
 - eSpeak NG Team for [espeak-ng](https://sourceforge.net/app/espeak-ng/): https://github.com/espeak-ng/espeak-ng
-- Godot Game Engine Team for the [Godot Game Engine](https://godotengine.org): https://github.com/godotengine/godot/
+- Godot Team for the [Godot Game Engine](https://godotengine.org): https://github.com/godotengine/godot/
 
 # How 2 install
 ## Simple (pre-compiled binaries, unlatest but stablest)
@@ -31,18 +31,33 @@ I'm greedy and I need TTS and soundpad in one program ONLY
 
 ## Advanced (compiling from source, latest but unstablest)
 ### Windows
-NOT fully sure yet
+1. Install [Git](https://git-scm.com/install/windows) and download the [Godot Game Engine](https://godotengine.org/download/windows)
+
+2. Open Godot, go online, make an empty project, download the Windows export templates and close Godot (you can delete the project you made)
+
+3. Put Godot in your desktop and run these Command Prompt/PowerShell/Terminal lines on your desktop (replace Godot-version with the Godot version you downloaded)
+```cmd
+git clone https://github.com/greg0rygreg/SoundsEz.git
+.\Godot-version --export-release win64 SoundsEz\project.godot SoundsEz.zip
+```
 
 ### Linux
+1. Install the `godot` and `git` packages using your distro's package manager
+
+On Arch, it should be something like this:
 ```sh
-# you'll need to install godot and git using your package manager
-git clone https://github.com/greg0rygreg/SoundsEz
-cd SoundsEz
-godot --export-release linux ./project.godot ../SoundsEz.zip
+sudo pacman -S godot git
+```
+
+2. Open Godot, go online, make an empty project, download the Linux export templates and close Godot (you can delete the project you made)
+
+3. Run these shell lines on your desktop
+```sh
+git clone https://github.com/greg0rygreg/SoundsEz.git
+godot --export-release linux SoundsEz/project.godot SoundsEz.zip
 ```
 
 # Troubleshooting
-
 ## Windows
 ### VCRUNTIMEXXX errors
 Install Visual C++ Redistributable (lastest worked for me (in a VM))
