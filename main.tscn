@@ -329,8 +329,11 @@ text = "Audio files:"
 
 [node name="selall" type="CheckBox" parent="tabs/sounds/horcont/files/listT" unique_id=1068201371]
 layout_mode = 2
-disabled = true
-text = "Slct. All"
+text = "Select All"
+
+[node name="search" type="LineEdit" parent="tabs/sounds/horcont/files" unique_id=1344054622]
+layout_mode = 2
+placeholder_text = "Search..."
 
 [node name="toplay" type="PanelContainer" parent="tabs/sounds/horcont/files" unique_id=1038928457]
 layout_mode = 2
@@ -392,8 +395,11 @@ text = "Playlist:"
 
 [node name="CheckBox" type="CheckBox" parent="tabs/sounds/horcont/player/playingT" unique_id=842074443]
 layout_mode = 2
-disabled = true
-text = "Slct. All"
+text = "Select All"
+
+[node name="search" type="LineEdit" parent="tabs/sounds/horcont/player" unique_id=1010267234]
+layout_mode = 2
+placeholder_text = "Search..."
 
 [node name="playing" type="PanelContainer" parent="tabs/sounds/horcont/player" unique_id=1611323343]
 layout_mode = 2
@@ -463,7 +469,7 @@ text = "%"
 
 [node name="ohno" type="Button" parent="tabs/sounds/horcont/player" unique_id=211373410]
 layout_mode = 2
-text = "⚠️ Apply \"Next\" to every audio file playing"
+text = "⚠️ Apply \"Next\" to selected audio files"
 
 [node name="sets" type="MarginContainer" parent="tabs" unique_id=247406521]
 visible = false
@@ -577,8 +583,12 @@ use_native_dialog = true
 
 [connection signal="item_activated" from="tabs/tts/horcont/vercont2/hist" to="tabs/tts" method="_on_hist_item_activated"]
 [connection signal="pressed" from="tabs/tts/horcont/vercont2/audio/play" to="tabs/tts" method="_on_play_pressed"]
+[connection signal="toggled" from="tabs/sounds/horcont/files/listT/selall" to="tabs/sounds" method="_on_slc_selall_toggled"]
+[connection signal="text_submitted" from="tabs/sounds/horcont/files/search" to="tabs/sounds" method="_on_slc_search_submitted"]
 [connection signal="pressed" from="tabs/sounds/horcont/files/slc_actions/play" to="tabs/sounds" method="_on_play_pressed"]
 [connection signal="pressed" from="tabs/sounds/horcont/files/slc_actions/rem" to="tabs/sounds" method="_on_rem_pressed"]
+[connection signal="toggled" from="tabs/sounds/horcont/player/playingT/CheckBox" to="tabs/sounds" method="_on_pl_selall_toggled"]
+[connection signal="text_submitted" from="tabs/sounds/horcont/player/search" to="tabs/sounds" method="_on_pl_search_submitted"]
 [connection signal="pressed" from="tabs/sounds/horcont/player/globalctrl/pauseall" to="tabs/sounds" method="_on_pauseall_pressed"]
 [connection signal="pressed" from="tabs/sounds/horcont/player/globalctrl/resumeall" to="tabs/sounds" method="_on_resumeall_pressed"]
 [connection signal="pressed" from="tabs/sounds/horcont/player/globalctrl/stopall" to="tabs/sounds" method="_on_stopall_pressed"]
