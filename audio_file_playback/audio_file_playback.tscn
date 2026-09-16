@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bvghq327ugprf"]
 
-[ext_resource type="Script" uid="uid://b0fuwhv5xsa3q" path="res://audio_file_playback/script.gd" id="1_masti"]
+[ext_resource type="Script" uid="uid://b0fuwhv5xsa3q" path="res://audio_file_playback/AFP.gd" id="1_masti"]
 
 [node name="AFP" type="PanelContainer" unique_id=1222477020 node_paths=PackedStringArray("playback", "track_label", "looping", "volume")]
 script = ExtResource("1_masti")
@@ -21,7 +21,7 @@ layout_mode = 2
 
 [node name="name" type="Label" parent="margineer/vercont" unique_id=1591179155]
 layout_mode = 2
-text = "audio_name"
+text = "/home/user/Music/kpopdemonhunters.wav"
 autowrap_mode = 3
 
 [node name="playtime" type="HBoxContainer" parent="margineer/vercont" unique_id=1355433624]
@@ -29,14 +29,14 @@ layout_mode = 2
 
 [node name="cur" type="Label" parent="margineer/vercont/playtime" unique_id=1227218504]
 layout_mode = 2
-text = "-:-:-.-"
+text = "-:--:--.--"
 
 [node name="sep" type="VSeparator" parent="margineer/vercont/playtime" unique_id=1628212634]
 layout_mode = 2
 
 [node name="max" type="Label" parent="margineer/vercont/playtime" unique_id=573101462]
 layout_mode = 2
-text = "-:-:-.-"
+text = "-:--:--.--"
 
 [node name="timeslider" type="HSlider" parent="margineer/vercont" unique_id=1374952395]
 layout_mode = 2
