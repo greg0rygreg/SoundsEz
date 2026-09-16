@@ -320,31 +320,61 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="listT" type="Label" parent="tabs/sounds/horcont/files" unique_id=277304375]
+[node name="listT" type="HBoxContainer" parent="tabs/sounds/horcont/files" unique_id=1682253337]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="tabs/sounds/horcont/files/listT" unique_id=277304375]
 layout_mode = 2
 text = "Audio files:"
 
-[node name="list" type="ItemList" parent="tabs/sounds/horcont/files" unique_id=551197936]
+[node name="selall" type="CheckBox" parent="tabs/sounds/horcont/files/listT" unique_id=1068201371]
+layout_mode = 2
+disabled = true
+text = "Slct. All"
+
+[node name="toplay" type="PanelContainer" parent="tabs/sounds/horcont/files" unique_id=1038928457]
 layout_mode = 2
 size_flags_vertical = 3
-select_mode = 1
 
-[node name="actions" type="HBoxContainer" parent="tabs/sounds/horcont/files" unique_id=734944502]
+[node name="scrollcont" type="ScrollContainer" parent="tabs/sounds/horcont/files/toplay" unique_id=2111404326]
 layout_mode = 2
 
-[node name="add" type="Button" parent="tabs/sounds/horcont/files/actions" unique_id=905345715]
+[node name="margineer" type="MarginContainer" parent="tabs/sounds/horcont/files/toplay/scrollcont" unique_id=704195823]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="vercont" type="VBoxContainer" parent="tabs/sounds/horcont/files/toplay/scrollcont/margineer" unique_id=1628701509]
+layout_mode = 2
+
+[node name="pl_actions" type="HBoxContainer" parent="tabs/sounds/horcont/files" unique_id=734944502]
+layout_mode = 2
+
+[node name="add" type="Button" parent="tabs/sounds/horcont/files/pl_actions" unique_id=905345715]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "➕ Add new audio file(s)"
 
-[node name="reload" type="Button" parent="tabs/sounds/horcont/files/actions" unique_id=1319392955]
-layout_mode = 2
-text = "🔃 Reload list"
-
-[node name="rem" type="Button" parent="tabs/sounds/horcont/files/actions" unique_id=225434431]
+[node name="reload" type="Button" parent="tabs/sounds/horcont/files/pl_actions" unique_id=1319392955]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "🗑️ Remove selected audio file(s)"
+text = "🔃 Reload list"
+
+[node name="slc_actions" type="HBoxContainer" parent="tabs/sounds/horcont/files" unique_id=454560399]
+layout_mode = 2
+
+[node name="play" type="Button" parent="tabs/sounds/horcont/files/slc_actions" unique_id=2009369450]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "▶️ Play Selected"
+
+[node name="rem" type="Button" parent="tabs/sounds/horcont/files/slc_actions" unique_id=225434431]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "🗑️ Remove Selected"
 
 [node name="sep" type="VSeparator" parent="tabs/sounds/horcont" unique_id=1808355417]
 layout_mode = 2
@@ -353,9 +383,17 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="playingT" type="Label" parent="tabs/sounds/horcont/player" unique_id=798419625]
+[node name="playingT" type="HBoxContainer" parent="tabs/sounds/horcont/player" unique_id=920551535]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="tabs/sounds/horcont/player/playingT" unique_id=798419625]
 layout_mode = 2
 text = "Playlist:"
+
+[node name="CheckBox" type="CheckBox" parent="tabs/sounds/horcont/player/playingT" unique_id=842074443]
+layout_mode = 2
+disabled = true
+text = "Slct. All"
 
 [node name="playing" type="PanelContainer" parent="tabs/sounds/horcont/player" unique_id=1611323343]
 layout_mode = 2
@@ -383,17 +421,17 @@ layout_mode = 2
 [node name="pauseall" type="Button" parent="tabs/sounds/horcont/player/globalctrl" unique_id=20332690]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "⏸️ Pause Everything"
+text = "⏸️ Pause Selected"
 
 [node name="resumeall" type="Button" parent="tabs/sounds/horcont/player/globalctrl" unique_id=1860681653]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "▶️ Resume Everything"
+text = "▶️ Resume Selected"
 
 [node name="stopall" type="Button" parent="tabs/sounds/horcont/player/globalctrl" unique_id=1720587752]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "🛑 Stop Everything"
+text = "🛑 Stop Selected"
 
 [node name="next" type="HBoxContainer" parent="tabs/sounds/horcont/player" unique_id=1056657285]
 layout_mode = 2
@@ -477,11 +515,11 @@ layout_mode = 2
 
 [node name="CheckButton" type="CheckButton" parent="tabs/sets/vercont/setstabs/general/vercont/theme" unique_id=938430802]
 layout_mode = 2
-text = "Theme: 🔅"
+text = "Theme: 🔅 Dark"
 
 [node name="Label" type="Label" parent="tabs/sets/vercont/setstabs/general/vercont/theme" unique_id=1001826850]
 layout_mode = 2
-text = "🔆"
+text = "🔆 Light"
 
 [node name="outs" type="HBoxContainer" parent="tabs/sets/vercont/setstabs/general/vercont" unique_id=50084657]
 layout_mode = 2
@@ -539,8 +577,8 @@ use_native_dialog = true
 
 [connection signal="item_activated" from="tabs/tts/horcont/vercont2/hist" to="tabs/tts" method="_on_hist_item_activated"]
 [connection signal="pressed" from="tabs/tts/horcont/vercont2/audio/play" to="tabs/tts" method="_on_play_pressed"]
-[connection signal="item_activated" from="tabs/sounds/horcont/files/list" to="tabs/sounds" method="_on_list_item_activated"]
-[connection signal="pressed" from="tabs/sounds/horcont/files/actions/rem" to="tabs/sounds" method="_on_rem_pressed"]
+[connection signal="pressed" from="tabs/sounds/horcont/files/slc_actions/play" to="tabs/sounds" method="_on_play_pressed"]
+[connection signal="pressed" from="tabs/sounds/horcont/files/slc_actions/rem" to="tabs/sounds" method="_on_rem_pressed"]
 [connection signal="pressed" from="tabs/sounds/horcont/player/globalctrl/pauseall" to="tabs/sounds" method="_on_pauseall_pressed"]
 [connection signal="pressed" from="tabs/sounds/horcont/player/globalctrl/resumeall" to="tabs/sounds" method="_on_resumeall_pressed"]
 [connection signal="pressed" from="tabs/sounds/horcont/player/globalctrl/stopall" to="tabs/sounds" method="_on_stopall_pressed"]
