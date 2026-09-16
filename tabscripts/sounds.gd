@@ -77,6 +77,7 @@ func __ready():
       "duration": 3
     })
     brain.tabs.set_tab_disabled(1, true)
+    brain.tabs.current_tab = 3
   else:
     files = JSON.parse_string(temp_AF.get_as_text())
     temp_AF.close()
