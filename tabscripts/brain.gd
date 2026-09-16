@@ -56,11 +56,6 @@ Install VB-Audio Cable to be able to micspam to apps or something idk
 
 ## Linux
 Install pactl (pulseaudio-utils for every distro on [command-not-found.com](https://command-not-found.com/pactl) except Arch which is libpulse), SoundsEz will automatically generate a sink on startup
-
-# TODO
-- [x] Make this readme pretty
-- [ ] Fix some languages not being compatible with some variants
-- [x] Make settings tab pretty
 """
 
 #var data := {
