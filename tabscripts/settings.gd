@@ -3,10 +3,12 @@ extends MarginContainer
 @onready var brain := get_tree().current_scene
 @onready var outputs_button := $vercont/setstabs/general/vercont/outs/OptionButton
 @onready var theme_toggle := $vercont/setstabs/general/vercont/theme/CheckButton
+@onready var tts_warn := $vercont/setstabs/general/vercont/ttswarn
   
 func _on_visibility_changed() -> void:
   if !visible: return
-  theme_toggle.button_pressed = brain.get_node("theme").visible
+  theme_toggle.button_pressed = brain.conf.get_value("General", "lightmode", false)
+  tts_warn.button_pressed = brain.conf.get_value("General", "ttswarn", false)
   outputs_button.clear()
   brain.outputs = AudioServer.get_output_device_list()
   for out in brain.outputs:
@@ -15,6 +17,7 @@ func _on_visibility_changed() -> void:
 
 func __ready() -> void:
   theme_toggle.button_pressed = brain.conf.get_value("General", "lightmode", false)
+  tts_warn.button_pressed = brain.conf.get_value("General", "ttswarn", false)
   print(OS.get_user_data_dir())
   applysets()
   visibility_changed.connect(_on_visibility_changed)
@@ -28,10 +31,12 @@ func _ready() -> void:
 
 func _on_apply_pressed() -> void:
   brain.conf.set_value("General", "lightmode", theme_toggle.button_pressed)
+  brain.conf.set_value("General", "ttswarn", tts_warn.button_pressed)
   applysets()
 
 func _on_reset_pressed() -> void:
   theme_toggle.button_pressed = false
+  tts_warn.button_pressed = false
   outputs_button.select(0)
 
 func _notification(what: int) -> void:
