@@ -57,7 +57,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 tab_alignment = 1
-current_tab = 1
+current_tab = 2
 tab_0/title = "🤖 Text-to-Speech"
 tab_1/title = "🔊 Soundpad"
 tab_2/title = "⚙️ Settings"
@@ -304,6 +304,7 @@ size_flags_horizontal = 3
 text = "🛑 Silence Everyone"
 
 [node name="sounds" type="MarginContainer" parent="tabs" unique_id=491676046]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
@@ -472,7 +473,6 @@ layout_mode = 2
 text = "⚠️ Apply \"Next\" to selected audio files"
 
 [node name="sets" type="MarginContainer" parent="tabs" unique_id=247406521]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
@@ -518,6 +518,7 @@ layout_mode = 2
 
 [node name="theme" type="HBoxContainer" parent="tabs/sets/vercont/setstabs/general/vercont" unique_id=928849742]
 layout_mode = 2
+theme_override_constants/separation = 0
 
 [node name="CheckButton" type="CheckButton" parent="tabs/sets/vercont/setstabs/general/vercont/theme" unique_id=938430802]
 layout_mode = 2
@@ -537,6 +538,10 @@ text = "Audio output:"
 [node name="OptionButton" type="OptionButton" parent="tabs/sets/vercont/setstabs/general/vercont/outs" unique_id=376284391]
 layout_mode = 2
 size_flags_horizontal = 0
+
+[node name="ttswarn" type="CheckBox" parent="tabs/sets/vercont/setstabs/general/vercont" unique_id=330859850]
+layout_mode = 2
+text = "Don't display the TTS warning again"
 
 [node name="info" type="MarginContainer" parent="tabs" unique_id=398324980]
 visible = false
