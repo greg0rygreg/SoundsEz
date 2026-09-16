@@ -2,12 +2,13 @@
 
 [ext_resource type="Script" uid="uid://b0fuwhv5xsa3q" path="res://audio_file_playback/AFP.gd" id="1_masti"]
 
-[node name="AFP" type="PanelContainer" unique_id=1222477020 node_paths=PackedStringArray("playback", "track_label", "looping", "volume")]
+[node name="AFP" type="PanelContainer" unique_id=1222477020 node_paths=PackedStringArray("playback", "track_label", "looping", "volume", "selected")]
 script = ExtResource("1_masti")
 playback = NodePath("playback")
-track_label = NodePath("margineer/vercont/name")
+track_label = NodePath("margineer/vercont/trackname/Label")
 looping = NodePath("margineer/vercont/ctrls/loop")
 volume = NodePath("margineer/vercont/ctrls/volume/SpinBox")
+selected = NodePath("margineer/vercont/trackname/CheckBox")
 
 [node name="margineer" type="MarginContainer" parent="." unique_id=1410731753]
 layout_mode = 2
@@ -19,8 +20,15 @@ theme_override_constants/margin_bottom = 8
 [node name="vercont" type="VBoxContainer" parent="margineer" unique_id=973486052]
 layout_mode = 2
 
-[node name="name" type="Label" parent="margineer/vercont" unique_id=1591179155]
+[node name="trackname" type="HBoxContainer" parent="margineer/vercont" unique_id=1877426000]
 layout_mode = 2
+
+[node name="CheckBox" type="CheckBox" parent="margineer/vercont/trackname" unique_id=1877604479]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="margineer/vercont/trackname" unique_id=1591179155]
+layout_mode = 2
+size_flags_horizontal = 3
 text = "/home/user/Music/kpopdemonhunters.wav"
 autowrap_mode = 3
 

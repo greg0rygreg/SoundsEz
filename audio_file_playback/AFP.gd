@@ -8,6 +8,7 @@ class_name AudioFilePlayback
 @export var track_label: Label
 @export var looping: CheckBox
 @export var volume: SpinBox
+@export var selected: CheckBox
 var dragging := false
 
 # Called when the node enters the scene tree for the first time.
