@@ -58,19 +58,6 @@ Install VB-Audio Cable to be able to micspam to apps or something idk
 Install pactl (pulseaudio-utils for every distro on [command-not-found.com](https://command-not-found.com/pactl) except Arch which is libpulse), SoundsEz will automatically generate a sink on startup
 """
 
-#var data := {
-  #"lightmode": false,
-  #"files": [],
-  #"sounds": {
-    #"volume": 100,
-    #"loop": false
-  #},
-  #"tts": {
-    #"volume": 100,
-    #"pitch": 50,
-    #"wpm": 175
-  #}
-#}
 var sink_id: int = -1
 
 func _notification(what: int) -> void:
@@ -105,17 +92,18 @@ func _ready() -> void:
     _:
       EasyNotify.add_notification({
         "title": "New home",
-        "message": "I don't remember compiling SoundsEz for %s but you look smart since you compiled it for %s" % [OS.get_name(),OS.get_name()],
+        "message": "I don't remember compiling SoundsEz for %s but you look smart since you compiled it for that OS" % OS.get_name(),
         "duration": 3
       })
   outputs = AudioServer.get_output_device_list()
   for out in outputs:
     tabs.get_node("sets").outputs_button.add_item(out)
   
-  EasyNotify.add_notification({
-    "title": "TTS warning",
-    "message": "Some languages aren't compatible with some variants & vice versa",
-    "duration": 3
-  })
+  if !conf.get_value("General", "ttswarn", false):
+    EasyNotify.add_notification({
+      "title": "TTS warning",
+      "message": "Some languages aren't compatible with some variants & vice versa",
+      "duration": 3
+    })
   
   $tabs/info/MarkdownLabel.markdown_text = md_fix
