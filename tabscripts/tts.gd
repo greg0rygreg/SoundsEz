@@ -38,9 +38,9 @@ func _notification(what: int) -> void:
     for proc in rprocs:
       OS.kill(proc)
     rprocs.clear()
-    brain.data["tts"]["volume"] = $horcont/vercont/ctrls/volume/SpinBox.value
-    brain.data["tts"]["pitch"] = $horcont/vercont/ctrls/pitch/SpinBox.value
-    brain.data["tts"]["wpm"] = $horcont/vercont/ctrls/rate/SpinBox.value
+    brain.conf.set_value("TTS", "volume", $horcont/vercont/ctrls/volume/SpinBox.value)
+    brain.conf.set_value("TTS", "pitch", $horcont/vercont/ctrls/pitch/SpinBox.value)
+    brain.conf.set_value("TTS", "wpm", $horcont/vercont/ctrls/rate/SpinBox.value)
 
 func __ready() -> void:
   if OS.execute("espeak-ng", ["-h"]) != 0:
@@ -60,9 +60,9 @@ func __ready() -> void:
   $horcont/vercont2/clear.connect("pressed", tts_history.clear)
   $horcont/vercont/langs.select(0)
   $horcont/vercont/vars.select(0)
-  $horcont/vercont/ctrls/volume/SpinBox.value = brain.data["tts"]["volume"]
-  $horcont/vercont/ctrls/pitch/SpinBox.value = brain.data["tts"]["pitch"]
-  $horcont/vercont/ctrls/rate/SpinBox.value = brain.data["tts"]["wpm"]
+  $horcont/vercont/ctrls/volume/SpinBox.value = brain.conf.get_value("TTS", "volume", 100)
+  $horcont/vercont/ctrls/pitch/SpinBox.value = brain.conf.get_value("TTS", "pitch", 50)
+  $horcont/vercont/ctrls/rate/SpinBox.value = brain.conf.get_value("TTS", "wpm", 175)
 
 func _ready() -> void:
   call_deferred("__ready") # godot rapes my plans if i don't defer the call

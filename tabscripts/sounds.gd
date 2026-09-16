@@ -1,27 +1,94 @@
 extends MarginContainer
 
 @onready var brain := get_tree().current_scene
-@onready var filelist := $horcont/files/list
+@onready var filelist := $horcont/files/toplay/scrollcont/margineer/vercont
 @onready var playlist := $horcont/player/playing/scrollcont/margineer/vercont
 @onready var afp_scn: PackedScene = load("res://audio_file_playback/audio_file_playback.tscn")
+@onready var afs_scn: PackedScene = load("res://audio_file_selection/audio_file_selection.tscn")
 
+var files: Array = []
 var being_grabbed := false
 
 func _notification(what: int) -> void:
   if what == NOTIFICATION_WM_CLOSE_REQUEST:
-    brain.data["sounds"]["volume"] = $horcont/player/next/volume.value
-    brain.data["sounds"]["loop"] = $horcont/player/next/loop.button_pressed
+    #brain.data["sounds"]["volume"] = $horcont/player/next/volume.value
+    #brain.data["sounds"]["loop"] = $horcont/player/next/loop.button_pressed
+    brain.conf.set_value("Soundpad", "volume", $horcont/player/next/volume.value)
+    brain.conf.set_value("Soundpad", "loop", $horcont/player/next/loop.button_pressed)
+    var temp_AF := FileAccess.open("user://audiofiles.json", FileAccess.WRITE)
+    temp_AF.store_string(JSON.stringify(files, "  "))
+    temp_AF.close()
+
+func add_new_to_pl(track: String):
+  var temp: AudioFilePlayback = afp_scn.instantiate()
+  var stream_temp: AudioStream
+  var fail := false
+  match track.get_extension():
+    "wav":
+      stream_temp = AudioStreamWAV.load_from_file(track)
+    "ogg":
+      stream_temp = AudioStreamOggVorbis.load_from_file(track)
+    "mp3":
+      stream_temp = AudioStreamMP3.load_from_file(track)
+    _:
+      EasyNotify.add_notification({
+        "title": "what the fuck",
+        "message": "i ain't loading ts gng",
+        "duration": 2
+      })
+      fail = true
+  
+  if !fail:
+    temp.playback.stream = stream_temp
+    temp.track_label.text = track
+    temp.looping.button_pressed = $horcont/player/next/loop.button_pressed
+    temp.volume.value = $horcont/player/next/volume.value
+    playlist.add_child(temp)
 
 func reload_filelist():
-  filelist.clear()
-  for file: String in brain.data["files"]:
-    filelist.add_item(file)
+  for file: AudioFileSelection in filelist.get_children():
+    filelist.remove_child(file)
+    file.queue_free()
+  for file: String in files:
+    var temp := afs_scn.instantiate()
+    temp.trackname_label.text = file
+    temp.playbutton.connect("pressed", add_new_to_pl.bind(temp.trackname_label.text))
+    temp.rembutton.connect("pressed", func():
+      files.erase(temp.trackname_label.text)
+      for y: AudioFilePlayback in playlist.get_children():
+        if y.track_label.text == temp.trackname_label.text:
+          y.queue_free()
+      reload_filelist()
+    )
+    filelist.add_child(temp)
 
 func __ready():
-  $horcont/files/actions/add.connect("pressed", brain.get_node("newaf").popup_centered)
-  $horcont/files/actions/reload.connect("pressed", reload_filelist)
-  $horcont/player/next/volume.value = brain.data["sounds"]["volume"]
-  $horcont/player/next/loop.button_pressed = brain.data["sounds"]["loop"]
+  var temp_AF := FileAccess.open("user://audiofiles.json", FileAccess.READ)
+  if !temp_AF:
+    temp_AF = FileAccess.open("user://audiofiles.json", FileAccess.WRITE)
+    temp_AF.store_string(JSON.stringify([]))
+    temp_AF.close()
+    temp_AF = FileAccess.open("user://audiofiles.json", FileAccess.READ)
+  # if it's STILL telling us it's not working
+  if !temp_AF:
+    EasyNotify.add_notification({
+      "title": "Uh...oh!",
+      "message": "Couldn't read user://audiofiles.json, soundpad functionality has been disabled",
+      "duration": 3
+    })
+    brain.tabs.set_tab_disabled(1, true)
+  else:
+    files = JSON.parse_string(temp_AF.get_as_text())
+    temp_AF.close()
+  
+  if !OS.has_feature("editor"):
+    files = files.filter(func(x: String): return !x.begins_with("res://"))
+  files = files.filter(func(x: String): return FileAccess.file_exists(x))
+
+  $horcont/files/pl_actions/add.connect("pressed", brain.get_node("newaf").popup_centered)
+  $horcont/files/pl_actions/reload.connect("pressed", reload_filelist)
+  $horcont/player/next/volume.value = brain.conf.get_value("Soundpad", "volume", 100)
+  $horcont/player/next/loop.button_pressed = brain.conf.get_value("Soundpad", "loop", false)
   reload_filelist()
 
 func _ready() -> void:
@@ -31,55 +98,34 @@ func _on_newaf_files_selected(paths: PackedStringArray) -> void:
   for path in paths:
     match path.get_extension():
       "wav", "mp3", "ogg":
-        if path not in brain.data["files"]:
-          brain.data["files"].append(path)
+        if path not in files:
+          files.append(path)
       _:
         EasyNotify.add_notification({
-          "title": "Did not import:",
+          "title": "Oops! Did not import:",
           "message": "%s" % path,
           "duration": 2
         })
   reload_filelist()
 
 func _on_rem_pressed() -> void:
-  brain.data["files"] = brain.data["files"].filter(
+  files = files.filter(
     func(file):
       var temp := []
-      for x in filelist.get_selected_items():
-        temp.append(filelist.get_item_text(x))
+      for x: AudioFileSelection in filelist.get_children():
+        if !x.selected.button_pressed: continue
+        temp.append(x.trackname_label.text)
         for y: AudioFilePlayback in playlist.get_children():
-          if y.track_label.text == filelist.get_item_text(x):
+          if y.track_label.text == x.trackname_label.text:
             y.queue_free()
       return not file in temp
   )
   reload_filelist()
 
-func _on_list_item_activated(_index: int) -> void:
-  for index in filelist.get_selected_items():
-    var temp: AudioFilePlayback = afp_scn.instantiate()
-    var stream_temp: AudioStream
-    var fail := false
-    match filelist.get_item_text(index).get_extension():
-      "wav":
-        stream_temp = AudioStreamWAV.load_from_file(filelist.get_item_text(index))
-      "ogg":
-        stream_temp = AudioStreamOggVorbis.load_from_file(filelist.get_item_text(index))
-      "mp3":
-        stream_temp = AudioStreamMP3.load_from_file(filelist.get_item_text(index))
-      _:
-        EasyNotify.add_notification({
-          "title": "what the fuck",
-          "message": "i ain't loading ts gng",
-          "duration": 2
-        })
-        fail = true
-    
-    if !fail:
-      temp.playback.stream = stream_temp
-      temp.track_label.text = filelist.get_item_text(index)
-      temp.looping.button_pressed = $horcont/player/next/loop.button_pressed
-      temp.volume.value = $horcont/player/next/volume.value
-      playlist.add_child(temp)
+func _on_play_pressed() -> void:
+  for x: AudioFileSelection in filelist.get_children():
+    if !x.selected.button_pressed: continue
+    add_new_to_pl(x.trackname_label.text)
 
 func _on_ohno_pressed() -> void:
   for y: AudioFilePlayback in playlist.get_children():

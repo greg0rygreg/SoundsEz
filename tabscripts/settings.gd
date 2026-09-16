@@ -14,7 +14,7 @@ func _on_visibility_changed() -> void:
   outputs_button.select(brain.outputs.find(AudioServer.output_device))
 
 func __ready() -> void:
-  theme_toggle.button_pressed = brain.data["lightmode"]
+  theme_toggle.button_pressed = brain.conf.get_value("General", "lightmode", false)
   print(OS.get_user_data_dir())
   applysets()
   visibility_changed.connect(_on_visibility_changed)
@@ -27,7 +27,7 @@ func _ready() -> void:
   call_deferred("__ready")
 
 func _on_apply_pressed() -> void:
-  brain.data["lightmode"] = theme_toggle.button_pressed
+  brain.conf.set_value("General", "lightmode", theme_toggle.button_pressed)
   applysets()
 
 func _on_reset_pressed() -> void:
@@ -36,6 +36,4 @@ func _on_reset_pressed() -> void:
 
 func _notification(what: int) -> void:
   if what == NOTIFICATION_WM_CLOSE_REQUEST:
-    var temp := FileAccess.open("user://conf.json", FileAccess.WRITE)
-    temp.store_string(JSON.stringify(brain.data, "  "))
-    temp.close()
+    brain.conf.save("user://conf.ini")

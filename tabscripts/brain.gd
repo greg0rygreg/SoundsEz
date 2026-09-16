@@ -2,7 +2,7 @@ extends Control
 
 @onready var tabs := $tabs
 @onready var outputs: PackedStringArray
-@onready var conf := FileAccess.open("user://conf.json", FileAccess.READ)
+@onready var conf: ConfigFile = ConfigFile.new()
 var md_fix := """# 🔊 SoundsEz
 FOS (Free and Open Source) AiO Solution for micspamming TTS and Sounds/Music
 
@@ -57,24 +57,24 @@ Install pactl (pulseaudio-utils for every distro on [command-not-found.com](http
 - [x] Make settings tab pretty
 """
 
-var data := {
-  "lightmode": false,
-  "files": [],
-  "sounds": {
-    "volume": 100,
-    "loop": false
-  },
-  "tts": {
-    "volume": 100,
-    "pitch": 50,
-    "wpm": 175
-  }
-}
-var soundsez_sink_id: int = -1
+#var data := {
+  #"lightmode": false,
+  #"files": [],
+  #"sounds": {
+    #"volume": 100,
+    #"loop": false
+  #},
+  #"tts": {
+    #"volume": 100,
+    #"pitch": 50,
+    #"wpm": 175
+  #}
+#}
+var sink_id: int = -1
 
 func _notification(what: int) -> void:
   if what == NOTIFICATION_WM_CLOSE_REQUEST:
-    OS.execute("pactl", ["unload-module", soundsez_sink_id])
+    OS.execute("pactl", ["unload-module", sink_id])
 
 func _ready() -> void:
   get_tree().root.title = "%s %s" % [
@@ -85,16 +85,10 @@ func _ready() -> void:
   
   print(OS.get_distribution_name())
   
+  conf.load("user://conf.ini")
   if !conf:
-    var conftemp := FileAccess.open("user://conf.json", FileAccess.WRITE)
-    conftemp.store_string(JSON.stringify(data))
-    conftemp.close()
-    conf = FileAccess.open("user://conf.json", FileAccess.READ)
-  data = JSON.parse_string(conf.get_as_text())
-  
-  if !OS.has_feature("editor"):
-    data["files"] = data["files"].filter(func(x: String): return !x.begins_with("res://"))
-  data["files"] = data["files"].filter(func(x: String): return FileAccess.file_exists(x))
+    printerr("Config file didn't load, exiting")
+    get_tree().quit()
   
   match OS.get_name():
     "Windows":
@@ -106,11 +100,11 @@ func _ready() -> void:
         "module-pipe-sink",
         "sink_name='SoundsEz Audio Output'"
       ], outtemp)
-      soundsez_sink_id = int(outtemp[0].strip_escapes())
+      sink_id = int(outtemp[0].strip_escapes())
     _:
       EasyNotify.add_notification({
-        "title": "what the fuck",
-        "message": "i don't remember compiling SoundsEz for %s" % OS.get_name(),
+        "title": "New home",
+        "message": "I don't remember compiling SoundsEz for %s but you look smart since you compiled it for %s" % [OS.get_name(),OS.get_name()],
         "duration": 3
       })
   outputs = AudioServer.get_output_device_list()
