@@ -129,17 +129,44 @@ func _on_play_pressed() -> void:
 
 func _on_ohno_pressed() -> void:
   for y: AudioFilePlayback in playlist.get_children():
+    if !y.selected.button_pressed: continue
     y.volume.value = $horcont/player/next/volume.value
     y.looping.button_pressed = $horcont/player/next/loop.button_pressed
 
 func _on_pauseall_pressed() -> void:
   for y: AudioFilePlayback in playlist.get_children():
+    if !y.selected.button_pressed: continue
     y.playback.stream_paused = true
 
 func _on_resumeall_pressed() -> void:
   for y: AudioFilePlayback in playlist.get_children():
+    if !y.selected.button_pressed: continue
     y.playback.stream_paused = false
 
 func _on_stopall_pressed() -> void:
   for y: AudioFilePlayback in playlist.get_children():
+    if !y.selected.button_pressed: continue
     y.queue_free()
+
+func _on_slc_selall_toggled(toggled_on: bool) -> void:
+  for x: AudioFileSelection in filelist.get_children():
+    x.selected.button_pressed = toggled_on
+
+func _on_pl_selall_toggled(toggled_on: bool) -> void:
+  for y: AudioFilePlayback in playlist.get_children():
+    y.selected.button_pressed = toggled_on
+
+func _on_slc_search_submitted(new_text: String) -> void:
+  #i don't really like FuzzySearch from Godot 4.8
+  for x: AudioFileSelection in filelist.get_children():
+    if new_text == "": x.show()
+    else:
+      if new_text.to_lower().is_subsequence_of(x.trackname_label.text): x.show()
+      else: x.hide()
+
+func _on_pl_search_submitted(new_text: String) -> void:
+  for y: AudioFilePlayback in playlist.get_children():
+    if new_text == "": y.show()
+    else:
+      if new_text.to_lower().is_subsequence_of(y.track_label.text): y.show()
+      else: y.hide()
