@@ -158,16 +158,17 @@ func _on_pl_selall_toggled(toggled_on: bool) -> void:
     y.selected.button_pressed = toggled_on
 
 func _on_slc_search_submitted(new_text: String) -> void:
-  #i don't really like FuzzySearch from Godot 4.8
+  var fuzzy := FuzzySearch.new()
   for x: AudioFileSelection in filelist.get_children():
     if new_text == "": x.show()
     else:
-      if new_text.to_lower().is_subsequence_of(x.trackname_label.text): x.show()
+      if fuzzy.search(new_text, x.trackname_label.text) != null: x.show()
       else: x.hide()
 
 func _on_pl_search_submitted(new_text: String) -> void:
+  var fuzzy := FuzzySearch.new()
   for y: AudioFilePlayback in playlist.get_children():
     if new_text == "": y.show()
     else:
-      if new_text.to_lower().is_subsequence_of(y.track_label.text): y.show()
+      if fuzzy.search(new_text, y.track_label.text) != null: y.show()
       else: y.hide()
