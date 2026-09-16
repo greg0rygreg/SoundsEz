@@ -31,30 +31,31 @@ I'm greedy and I need TTS and soundpad in one program ONLY
 
 ## Advanced (compiling from source, latest but unstablest)
 ### Windows
-1. Install [Git](https://git-scm.com/install/windows) and download the [Godot Game Engine](https://godotengine.org/download/windows)
+1. Install [Git](https://git-scm.com/install/windows) and download [Godot Game Engine](https://godotengine.org/download/archive/) version 4.8-dev6
 
 2. Open Godot, go online, make an empty project, download the Windows export templates and close Godot (you can delete the project you made)
 
-3. Put Godot in your desktop and run these Command Prompt/PowerShell/Terminal lines on your desktop (replace Godot-version with the Godot version you downloaded)
+3. Put Godot in your desktop and run these Command Prompt/PowerShell/Terminal lines on your desktop
 ```cmd
 git clone https://github.com/greg0rygreg/SoundsEz.git
-.\Godot-version --export-release win64 SoundsEz\project.godot SoundsEz.zip
+.\Godot_v4.8-dev6_win64.exe --export-release win64 SoundsEz\project.godot SoundsEz.zip
 ```
 
 ### Linux
-1. Install the `godot` and `git` packages using your distro's package manager
+1. Install the `git` package using your distro's package manager
 
 On Arch, it should be something like this:
 ```sh
-sudo pacman -S godot git
+sudo pacman -S git
 ```
+2. Download [Godot Game Engine](https://godotengine.org/download/archive/) version 4.8-dev6
 
 2. Open Godot, go online, make an empty project, download the Linux export templates and close Godot (you can delete the project you made)
 
-3. Run these shell lines on your desktop
+3. Put Godot in your desktop and run these shell lines on your desktop
 ```sh
 git clone https://github.com/greg0rygreg/SoundsEz.git
-godot --export-release linux SoundsEz/project.godot SoundsEz.zip
+./Godot_v4.8-dev6_linux.x86_64 --export-release linux SoundsEz/project.godot SoundsEz.zip
 ```
 
 # Troubleshooting
@@ -65,9 +66,15 @@ Install Visual C++ Redistributable (lastest worked for me (in a VM))
 ### 'espeak-ng not detected'
 install it dude what are you doing
 
+### 'Couldn't read user://audiofiles.json'
+Give SoundsEz permission to write in AppData or run it as administrator
+
 ## Linux
 ### 'espeak-ng not detected'
 install it dude what are you doing
+
+### 'Couldn't read user://audiofiles.json'
+Give SoundsEz permission to write in ~/.local/share or run it as superuser
 
 # Mentionables
 ## Windows

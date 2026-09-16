@@ -40,9 +40,15 @@ Install Visual C++ Redistributable (lastest worked for me (in a VM))
 ### 'espeak-ng not detected'
 install it dude what are you doing
 
+### 'Couldn't read user://audiofiles.json'
+Give SoundsEz permission to write in AppData or run it as administrator
+
 ## Linux
 ### 'espeak-ng not detected'
 install it dude what are you doing
+
+### 'Couldn't read user://audiofiles.json'
+Give SoundsEz permission to write in ~/.local/share or run it as superuser
 
 # Mentionables
 ## Windows
