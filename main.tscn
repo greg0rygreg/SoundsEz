@@ -57,14 +57,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 tab_alignment = 1
-current_tab = 2
+current_tab = 0
 tab_0/title = "🤖 Text-to-Speech"
 tab_1/title = "🔊 Soundpad"
 tab_2/title = "⚙️ Settings"
 tab_3/title = "ℹ️ Information"
 
 [node name="tts" type="MarginContainer" parent="tabs" unique_id=1342100132]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
@@ -473,6 +472,7 @@ layout_mode = 2
 text = "⚠️ Apply \"Next\" to selected audio files"
 
 [node name="sets" type="MarginContainer" parent="tabs" unique_id=247406521]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
