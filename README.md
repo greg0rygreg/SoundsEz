@@ -85,8 +85,9 @@ Install pactl (pulseaudio-utils for every distro on [command-not-found.com](http
 
 # TODO
 - [x] Make this readme pretty
-- [ ] Fix some languages not being compatible with some variants
 - [x] Make settings tab pretty
+- [ ] Fix some languages not being compatible with some variants
+- [ ] Make loading times faster when lots of audio files have been loaded/reloaded
 
 # Screenies
 ![text to speech](screenshots/tts.png)
