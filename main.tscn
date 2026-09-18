@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cjqlqlxinm3lo"]
 
-[ext_resource type="Script" uid="uid://b4v3vtwu3o8am" path="res://tabscripts/brain.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://b4v3vtwu3o8am" path="res://tabscripts/brain/brain.gd" id="1_ig7tw"]
 [ext_resource type="Shader" uid="uid://ca81jef3a2thf" path="res://invert.gdshader" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://2n1dd7fw2nv0" path="res://tabscripts/tts.gd" id="2_h2yge"]
 [ext_resource type="Script" uid="uid://btx4vxqvpboxr" path="res://tabscripts/settings.gd" id="3_1bvp3"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://bayuh2vafablg" path="res://addons/markdownlabel/header_formats/h4_format.gd" id="9_2cqfq"]
 [ext_resource type="Script" uid="uid://dfr1w7u3jgni3" path="res://addons/markdownlabel/header_formats/h5_format.gd" id="10_yaehf"]
 [ext_resource type="Script" uid="uid://bsi6dexoofpe6" path="res://addons/markdownlabel/header_formats/h6_format.gd" id="11_074og"]
+[ext_resource type="Script" uid="uid://gau48dlko4ph" path="res://tabscripts/brain/cur_time.gd" id="13_ycdy4"]
 
 [sub_resource type="Resource" id="Resource_cegan"]
 resource_local_to_scene = true
@@ -585,6 +586,25 @@ file_mode = 1
 access = 2
 filters = PackedStringArray("*.wav", "*.mp3", "*.ogg")
 use_native_dialog = true
+
+[node name="cur_time" type="PanelContainer" parent="." unique_id=247630081]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.022000002
+anchor_top = 0.035
+anchor_right = 0.022000002
+anchor_bottom = 0.035
+offset_left = -25.344002
+offset_top = -22.68
+offset_right = 24.655998
+offset_bottom = 0.3199997
+mouse_filter = 2
+script = ExtResource("13_ycdy4")
+
+[node name="Label" type="Label" parent="cur_time" unique_id=1597216785]
+layout_mode = 2
+text = "-:--:--.--"
 
 [connection signal="item_activated" from="tabs/tts/horcont/vercont2/hist" to="tabs/tts" method="_on_hist_item_activated"]
 [connection signal="pressed" from="tabs/tts/horcont/vercont2/audio/play" to="tabs/tts" method="_on_play_pressed"]

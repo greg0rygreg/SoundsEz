@@ -43,6 +43,7 @@ func add_new_to_pl(track: String):
     temp.track_label.text = track
     temp.looping.button_pressed = $horcont/player/next/loop.button_pressed
     temp.volume.value = $horcont/player/next/volume.value
+    temp.curtime_floating = brain.get_node("cur_time")
     playlist.add_child(temp)
 
 func reload_filelist():
