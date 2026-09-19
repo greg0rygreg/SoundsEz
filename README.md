@@ -21,15 +21,15 @@ I'm greedy and I need TTS and soundpad in one program ONLY
 - IUXGames for [EasyNotify](https://godotengine.org/asset-library/asset/5073): https://github.com/IUXGames/EasyNotify
 - Daenvil *et al.* for [MarkdownLabel](https://store.godotengine.org/asset/daenvil/markdownlabel/): https://github.com/daenvil/MarkdownLabel
 - eSpeak NG Team for [espeak-ng](https://sourceforge.net/app/espeak-ng/): https://github.com/espeak-ng/espeak-ng
-- Godot Team for the [Godot Game Engine](https://godotengine.org): https://github.com/godotengine/godot/
+- Godot Team *et al.* for the [Godot Game Engine](https://godotengine.org): https://github.com/godotengine/godot/
 
 # How 2 install
-## Simple (pre-compiled binaries, unlatest but stablest)
+## Simple (pre-compiled binaries, stablest)
 1. Go to latest release
 2. Download for your OS
 3. done
 
-## Advanced (compiling from source, latest but unstablest)
+## Advanced (compiling from source, unstablest)
 ### Windows
 1. Install [Git](https://git-scm.com/install/windows) and download [Godot Game Engine](https://godotengine.org/download/archive/) version 4.8-dev6
 
@@ -50,9 +50,9 @@ sudo pacman -S git
 ```
 2. Download [Godot Game Engine](https://godotengine.org/download/archive/) version 4.8-dev6
 
-2. Open Godot, go online, make an empty project, download the Linux export templates and close Godot (you can delete the project you made)
+3. Open Godot, go online, make an empty project, download the Linux export templates and close Godot (you can delete the project you made)
 
-3. Put Godot in your desktop and run these shell lines on your desktop
+4. Put Godot in your desktop and run these shell lines on your desktop
 ```sh
 git clone https://github.com/greg0rygreg/SoundsEz.git
 ./Godot_v4.8-dev6_linux.x86_64 --export-release linux SoundsEz/project.godot SoundsEz.zip
