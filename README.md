@@ -87,7 +87,8 @@ Install pactl (pulseaudio-utils for every distro on [command-not-found.com](http
 - [x] Make this readme pretty
 - [x] Make settings tab pretty
 - [ ] Fix some languages not being compatible with some variants
-- [ ] Make loading times faster when lots of audio files have been loaded/reloaded
+- [ ] Make loading times faster when lots of audio files have been loaded/reloaded (partially done)
+- [ ] Make light mode a theme and not a fucking shader??? lol????
 
 # Screenies
 ![text to speech](screenshots/tts.png)
