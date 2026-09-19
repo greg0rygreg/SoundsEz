@@ -6,6 +6,7 @@ extends MarginContainer
 @onready var afp_scn: PackedScene = load("res://audio_file_playback/audio_file_playback.tscn")
 @onready var afs_scn: PackedScene = load("res://audio_file_selection/audio_file_selection.tscn")
 
+var fuzzy := FuzzySearch.new()
 var files: Array = []
 var being_grabbed := false
 
@@ -46,22 +47,25 @@ func add_new_to_pl(track: String):
     temp.curtime_floating = brain.get_node("cur_time")
     playlist.add_child(temp)
 
+func add_new_to_fl(file: String):
+  var temp := afs_scn.instantiate()
+  temp.trackname_label.text = file
+  temp.playbutton.connect("pressed", add_new_to_pl.bind(temp.trackname_label.text))
+  temp.rembutton.connect("pressed", func():
+    files.erase(temp.trackname_label.text)
+    temp.queue_free()
+    for y: AudioFilePlayback in playlist.get_children():
+      if y.track_label.text == temp.trackname_label.text:
+        y.queue_free()
+  )
+  filelist.add_child(temp)
+
 func reload_filelist():
   for file: AudioFileSelection in filelist.get_children():
     filelist.remove_child(file)
     file.queue_free()
   for file: String in files:
-    var temp := afs_scn.instantiate()
-    temp.trackname_label.text = file
-    temp.playbutton.connect("pressed", add_new_to_pl.bind(temp.trackname_label.text))
-    temp.rembutton.connect("pressed", func():
-      files.erase(temp.trackname_label.text)
-      for y: AudioFilePlayback in playlist.get_children():
-        if y.track_label.text == temp.trackname_label.text:
-          y.queue_free()
-      reload_filelist()
-    )
-    filelist.add_child(temp)
+    add_new_to_fl(file)
 
 func __ready():
   var temp_AF := FileAccess.open("user://audiofiles.json", FileAccess.READ)
@@ -102,13 +106,13 @@ func _on_newaf_files_selected(paths: PackedStringArray) -> void:
       "wav", "mp3", "ogg":
         if path not in files:
           files.append(path)
+          add_new_to_fl(path)
       _:
         EasyNotify.add_notification({
           "title": "Oops! Did not import:",
           "message": "%s" % path,
           "duration": 2
         })
-  reload_filelist()
 
 func _on_rem_pressed() -> void:
   files = files.filter(
@@ -122,7 +126,6 @@ func _on_rem_pressed() -> void:
             y.queue_free()
       return not file in temp
   )
-  reload_filelist()
 
 func _on_play_pressed() -> void:
   for x: AudioFileSelection in filelist.get_children():
@@ -159,17 +162,41 @@ func _on_pl_selall_toggled(toggled_on: bool) -> void:
     y.selected.button_pressed = toggled_on
 
 func _on_slc_search_submitted(new_text: String) -> void:
-  var fuzzy := FuzzySearch.new()
+  var target := new_text if brain.conf.get_value("Soundpad", "searchcase", true) else new_text.to_lower()
   for x: AudioFileSelection in filelist.get_children():
-    if new_text == "": x.show()
+    if target == "": x.show()
     else:
-      if fuzzy.search(new_text, x.trackname_label.text) != null: x.show()
-      else: x.hide()
+      var shooter := x.trackname_label.text if brain.conf.get_value("Soundpad", "searchcase", true) else x.trackname_label.text.to_lower()
+      match brain.conf.get_value("Soundpad", "searchtype", 0):
+        0:
+          if fuzzy.search(target, shooter) != null: x.show()
+          else: x.hide()
+        1:
+          if target.is_subsequence_of(shooter): x.show()
+          else: x.hide()
+        2:
+          if shooter.begins_with(target): x.show()
+          else: x.hide()
+        3:
+          if target in shooter: x.show()
+          else: x.hide()
 
 func _on_pl_search_submitted(new_text: String) -> void:
-  var fuzzy := FuzzySearch.new()
+  var target := new_text if brain.conf.get_value("Soundpad", "searchcase", true) else new_text.to_lower()
   for y: AudioFilePlayback in playlist.get_children():
     if new_text == "": y.show()
     else:
-      if fuzzy.search(new_text, y.track_label.text) != null: y.show()
-      else: y.hide()
+      var shooter := y.track_label.text if brain.conf.get_value("Soundpad", "searchcase", true) else y.track_label.text.to_lower()
+      match brain.conf.get_value("Soundpad", "searchtype", 0):
+        0:
+          if fuzzy.search(target, shooter) != null: y.show()
+          else: y.hide()
+        1:
+          if target.is_subsequence_of(shooter): y.show()
+          else: y.hide()
+        2:
+          if shooter.begins_with(target): y.show()
+          else: y.hide()
+        3:
+          if target in shooter: y.show()
+          else: y.hide()
