@@ -23,6 +23,7 @@ func __ready() -> void:
   print(OS.get_user_data_dir())
   applysets()
   visibility_changed.connect(_on_visibility_changed)
+  $vercont/setstabs.current_tab = 0
 
 func applysets():
   brain.get_node("theme").visible = theme_toggle.button_pressed
