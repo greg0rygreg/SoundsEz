@@ -58,13 +58,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 tab_alignment = 1
-current_tab = 0
+current_tab = 2
 tab_0/title = "🤖 Text-to-Speech"
 tab_1/title = "🔊 Soundpad"
 tab_2/title = "⚙️ Settings"
 tab_3/title = "ℹ️ Information"
 
 [node name="tts" type="MarginContainer" parent="tabs" unique_id=1342100132]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
@@ -473,7 +474,6 @@ layout_mode = 2
 text = "⚠️ Apply \"Next\" to selected audio files"
 
 [node name="sets" type="MarginContainer" parent="tabs" unique_id=247406521]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
@@ -502,10 +502,14 @@ text = "🔃 Reset"
 layout_mode = 2
 size_flags_vertical = 3
 tab_alignment = 1
-current_tab = 0
+current_tab = 2
 tab_0/title = "⚙️ General"
+tab_1/title = "🤖 Text-to-Speech"
+tab_1/disabled = true
+tab_2/title = "🔊 Soundpad"
 
 [node name="general" type="MarginContainer" parent="tabs/sets/vercont/setstabs" unique_id=576696497]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
@@ -543,6 +547,58 @@ size_flags_horizontal = 0
 [node name="ttswarn" type="CheckBox" parent="tabs/sets/vercont/setstabs/general/vercont" unique_id=330859850]
 layout_mode = 2
 text = "Don't display the TTS warning again"
+
+[node name="tts" type="MarginContainer" parent="tabs/sets/vercont/setstabs" unique_id=976548622]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+metadata/_tab_index = 1
+metadata/_tab_name = "🤖 Text-to-Speech"
+
+[node name="soundpad" type="MarginContainer" parent="tabs/sets/vercont/setstabs" unique_id=1012698504]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+metadata/_tab_index = 2
+metadata/_tab_name = "🔊 Soundpad"
+
+[node name="vercont" type="VBoxContainer" parent="tabs/sets/vercont/setstabs/soundpad" unique_id=142424194]
+layout_mode = 2
+
+[node name="search" type="HBoxContainer" parent="tabs/sets/vercont/setstabs/soundpad/vercont" unique_id=1496654033]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="tabs/sets/vercont/setstabs/soundpad/vercont/search" unique_id=329527446]
+layout_mode = 2
+text = "Search Method: "
+
+[node name="OptionButton" type="OptionButton" parent="tabs/sets/vercont/setstabs/soundpad/vercont/search" unique_id=1519783207]
+layout_mode = 2
+selected = 0
+item_count = 4
+popup/item_0/text = "Fuzzy Search"
+popup/item_0/id = 0
+popup/item_1/text = "String Subsequence"
+popup/item_1/id = 1
+popup/item_2/text = "Folder Search (Starts With X)"
+popup/item_2/id = 2
+popup/item_3/text = "File Search (Contains X)"
+popup/item_3/id = 3
+
+[node name="Label2" type="Label" parent="tabs/sets/vercont/setstabs/soundpad/vercont/search" unique_id=1222971123]
+layout_mode = 2
+text = " (case sensitive:"
+
+[node name="CheckBox" type="CheckBox" parent="tabs/sets/vercont/setstabs/soundpad/vercont/search" unique_id=29855759]
+layout_mode = 2
+button_pressed = true
+text = ")"
 
 [node name="info" type="MarginContainer" parent="tabs" unique_id=398324980]
 visible = false
