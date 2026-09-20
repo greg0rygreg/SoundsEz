@@ -102,7 +102,7 @@ func _ready() -> void:
   if !conf.get_value("General", "ttswarn", false):
     EasyNotify.add_notification({
       "title": "TTS warning",
-      "message": "Some languages aren't compatible with some variants & vice versa",
+      "message": "Some languages aren't compatible with some variants",
       "duration": 3
     })
   
