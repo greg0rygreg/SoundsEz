@@ -41,6 +41,7 @@ func add_new_to_pl(track: String):
   
   if !fail:
     temp.playback.stream = stream_temp
+    temp.playback.stream_paused = $horcont/player/next/pause.button_pressed
     temp.track_label.text = track
     temp.looping.button_pressed = $horcont/player/next/loop.button_pressed
     temp.volume.value = $horcont/player/next/volume.value

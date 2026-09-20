@@ -58,7 +58,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 tab_alignment = 1
-current_tab = 2
+current_tab = 1
 tab_0/title = "🤖 Text-to-Speech"
 tab_1/title = "🔊 Soundpad"
 tab_2/title = "⚙️ Settings"
@@ -305,7 +305,6 @@ size_flags_horizontal = 3
 text = "🛑 Silence Everyone"
 
 [node name="sounds" type="MarginContainer" parent="tabs" unique_id=491676046]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
@@ -467,13 +466,18 @@ value = 100.0
 
 [node name="Label2" type="Label" parent="tabs/sounds/horcont/player/next" unique_id=523183922]
 layout_mode = 2
-text = "%"
+text = "% (paused:"
+
+[node name="pause" type="CheckBox" parent="tabs/sounds/horcont/player/next" unique_id=1758393975]
+layout_mode = 2
+text = ")"
 
 [node name="ohno" type="Button" parent="tabs/sounds/horcont/player" unique_id=211373410]
 layout_mode = 2
 text = "⚠️ Apply \"Next\" to selected audio files"
 
 [node name="sets" type="MarginContainer" parent="tabs" unique_id=247406521]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
@@ -586,9 +590,9 @@ popup/item_0/text = "Fuzzy Search"
 popup/item_0/id = 0
 popup/item_1/text = "String Subsequence"
 popup/item_1/id = 1
-popup/item_2/text = "Folder Search (Starts With X)"
+popup/item_2/text = "Directory Search (Starts With X)"
 popup/item_2/id = 2
-popup/item_3/text = "File Search (Contains X)"
+popup/item_3/text = "Folder/File Search (Contains X)"
 popup/item_3/id = 3
 
 [node name="Label2" type="Label" parent="tabs/sets/vercont/setstabs/soundpad/vercont/search" unique_id=1222971123]
