@@ -6,7 +6,7 @@ extends Control
 var md_fix := """# 🔊 SoundsEz
 FOS (Free and Open Source) AiO Solution for micspamming TTS and Sounds/Music
 
-Originally called SAM2PWSP and made to route SAM output to PipeWire Soundpad, inspired by Tarasov Aleksandr's [PipeWire Soundpad](https://github.com/arabianq/pipewire-soundpad) and Sebastian Macke's [Software Automatic Mouth](https://github.com/s-macke/SAM)
+Originally called SAM2PWSP and made to route SAM TTS output to PipeWire Soundpad, inspired by Tarasov Aleksandr's [PipeWire Soundpad](https://github.com/arabianq/pipewire-soundpad) and Sebastian Macke's [Software Automatic Mouth](https://github.com/s-macke/SAM)
 
 itch.io link: https://greg0rygreg.itch.io/soundsez
 
