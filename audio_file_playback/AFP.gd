@@ -12,7 +12,6 @@ class_name AudioFilePlayback
 @export var curtime_floating: PanelContainer
 var dragging := false
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
   var time := Time.get_time_dict_from_unix_time(playback.stream.get_length())
   time["msec"] = wrapf(playback.stream.get_length(), 0, 1) * 100

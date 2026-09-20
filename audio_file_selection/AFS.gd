@@ -21,7 +21,6 @@ func __ready():
     time["msec"]
   ]
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
   match trackname_label.text.get_extension():
     "wav":
