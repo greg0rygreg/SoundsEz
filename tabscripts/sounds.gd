@@ -167,7 +167,9 @@ func _on_slc_search_submitted(new_text: String) -> void:
   for x: AudioFileSelection in filelist.get_children():
     if target == "": x.show()
     else:
-      var shooter := x.trackname_label.text if brain.conf.get_value("Soundpad", "searchcase", true) else x.trackname_label.text.to_lower()
+      var shooter := x.trackname_label.text \
+        if brain.conf.get_value("Soundpad", "searchcase", true) \
+        else x.trackname_label.text.to_lower()
       match brain.conf.get_value("Soundpad", "searchtype", 0):
         0:
           if fuzzy.search(target, shooter) != null: x.show()
@@ -187,7 +189,9 @@ func _on_pl_search_submitted(new_text: String) -> void:
   for y: AudioFilePlayback in playlist.get_children():
     if new_text == "": y.show()
     else:
-      var shooter := y.track_label.text if brain.conf.get_value("Soundpad", "searchcase", true) else y.track_label.text.to_lower()
+      var shooter := y.track_label.text \
+        if brain.conf.get_value("Soundpad", "searchcase", true) \
+        else y.track_label.text.to_lower()
       match brain.conf.get_value("Soundpad", "searchtype", 0):
         0:
           if fuzzy.search(target, shooter) != null: y.show()
