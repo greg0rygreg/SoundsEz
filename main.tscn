@@ -58,7 +58,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 tab_alignment = 1
-current_tab = 1
+current_tab = 3
 tab_0/title = "🤖 Text-to-Speech"
 tab_1/title = "🔊 Soundpad"
 tab_2/title = "⚙️ Settings"
@@ -305,6 +305,7 @@ size_flags_horizontal = 3
 text = "🛑 Silence Everyone"
 
 [node name="sounds" type="MarginContainer" parent="tabs" unique_id=491676046]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
@@ -605,7 +606,6 @@ button_pressed = true
 text = ")"
 
 [node name="info" type="MarginContainer" parent="tabs" unique_id=398324980]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
