@@ -52,6 +52,14 @@ func add_new_to_fl(file: String):
   var temp := afs_scn.instantiate()
   temp.trackname_label.text = file
   temp.playbutton.connect("pressed", add_new_to_pl.bind(temp.trackname_label.text))
+  temp.mvup.connect("pressed", func():
+    files.remove_at(temp.get_index())
+    files.insert(wrap(temp.get_index()-1, 0, len(files)), temp.trackname_label.text)
+  )
+  temp.mvdown.connect("pressed", func():
+    files.remove_at(temp.get_index())
+    files.insert(wrap(temp.get_index()+1, 0, len(files)), temp.trackname_label.text)
+  )
   temp.rembutton.connect("pressed", func():
     files.erase(temp.trackname_label.text)
     temp.queue_free()

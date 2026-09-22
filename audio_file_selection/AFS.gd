@@ -7,6 +7,8 @@ class_name AudioFileSelection
 @onready var stream_temp: AudioStream
 @export var playbutton: Button
 @export var rembutton: Button
+@export var mvup: Button
+@export var mvdown: Button
 
 func __ready():
   var time := Time.get_time_dict_from_unix_time(stream_temp.get_length())
@@ -20,6 +22,8 @@ func __ready():
     "0" if time["msec"] < 10 else "",
     time["msec"]
   ]
+  mvup.connect("pressed", get_parent().move_child.bind(self, wrapi(get_index()-1, 0, len(get_parent().get_children()))))
+  mvdown.connect("pressed", get_parent().move_child.bind(self, wrapi(get_index()+1, 0, len(get_parent().get_children()))))
 
 func _ready() -> void:
   match trackname_label.text.get_extension():

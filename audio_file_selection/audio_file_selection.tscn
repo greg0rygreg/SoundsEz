@@ -2,13 +2,15 @@
 
 [ext_resource type="Script" uid="uid://cnufw1srjqdsp" path="res://audio_file_selection/AFS.gd" id="1_1n05e"]
 
-[node name="AFS" type="PanelContainer" unique_id=1790219231 node_paths=PackedStringArray("tracklen_label", "selected", "trackname_label", "playbutton", "rembutton")]
+[node name="AFS" type="PanelContainer" unique_id=1790219231 node_paths=PackedStringArray("tracklen_label", "selected", "trackname_label", "playbutton", "rembutton", "mvup", "mvdown")]
 script = ExtResource("1_1n05e")
-tracklen_label = NodePath("margineer/vercont/time")
-selected = NodePath("margineer/vercont/trackname/CheckBox")
-trackname_label = NodePath("margineer/vercont/trackname/Label")
-playbutton = NodePath("margineer/vercont/actions/play")
-rembutton = NodePath("margineer/vercont/actions/del")
+tracklen_label = NodePath("margineer/horcont/vercont/time")
+selected = NodePath("margineer/horcont/vercont/trackname/CheckBox")
+trackname_label = NodePath("margineer/horcont/vercont/trackname/Label")
+playbutton = NodePath("margineer/horcont/vercont/actions/play")
+rembutton = NodePath("margineer/horcont/vercont/actions/del")
+mvup = NodePath("margineer/horcont/orderactions/mvup")
+mvdown = NodePath("margineer/horcont/orderactions/mvdown")
 
 [node name="margineer" type="MarginContainer" parent="." unique_id=218197175]
 layout_mode = 2
@@ -17,34 +19,53 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="vercont" type="VBoxContainer" parent="margineer" unique_id=1999190975]
+[node name="horcont" type="HBoxContainer" parent="margineer" unique_id=737992]
 layout_mode = 2
 
-[node name="trackname" type="HBoxContainer" parent="margineer/vercont" unique_id=1979583809]
+[node name="vercont" type="VBoxContainer" parent="margineer/horcont" unique_id=1999190975]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="trackname" type="HBoxContainer" parent="margineer/horcont/vercont" unique_id=1979583809]
 layout_mode = 2
 
-[node name="CheckBox" type="CheckBox" parent="margineer/vercont/trackname" unique_id=1382819514]
+[node name="CheckBox" type="CheckBox" parent="margineer/horcont/vercont/trackname" unique_id=1382819514]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="margineer/vercont/trackname" unique_id=124776047]
+[node name="Label" type="Label" parent="margineer/horcont/vercont/trackname" unique_id=124776047]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "/home/user/Music/kpopdemonhunters.wav"
 autowrap_mode = 3
 
-[node name="time" type="Label" parent="margineer/vercont" unique_id=1368639599]
+[node name="time" type="Label" parent="margineer/horcont/vercont" unique_id=1368639599]
 layout_mode = 2
 text = "-:--:--.--"
 
-[node name="actions" type="HBoxContainer" parent="margineer/vercont" unique_id=943884330]
+[node name="actions" type="HBoxContainer" parent="margineer/horcont/vercont" unique_id=943884330]
 layout_mode = 2
 
-[node name="play" type="Button" parent="margineer/vercont/actions" unique_id=1499660333]
+[node name="play" type="Button" parent="margineer/horcont/vercont/actions" unique_id=1499660333]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "▶️ Play"
 
-[node name="del" type="Button" parent="margineer/vercont/actions" unique_id=1495637139]
+[node name="del" type="Button" parent="margineer/horcont/vercont/actions" unique_id=1495637139]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "🗑️ Remove"
+
+[node name="orderactions" type="VBoxContainer" parent="margineer/horcont" unique_id=544275841]
+layout_mode = 2
+
+[node name="mvup" type="Button" parent="margineer/horcont/orderactions" unique_id=508696734]
+layout_mode = 2
+size_flags_vertical = 3
+tooltip_text = "Might wrap around."
+text = "^"
+
+[node name="mvdown" type="Button" parent="margineer/horcont/orderactions" unique_id=1960943923]
+layout_mode = 2
+size_flags_vertical = 3
+tooltip_text = "Might wrap around."
+text = "v"
