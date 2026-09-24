@@ -20,6 +20,14 @@ func _notification(what: int) -> void:
     temp_AF.store_string(JSON.stringify(files, "  "))
     temp_AF.close()
 
+# clunky. Ew
+func shift_array(array: Array, from: int, to: int):
+  from = wrapi(from, 0, len(array))
+  to = wrapi(to, 0, len(array))
+  var temp = array[from]
+  array[from] = array[to]
+  array[to] = temp
+
 func add_new_to_pl(track: String):
   var temp: AudioFilePlayback = afp_scn.instantiate()
   var stream_temp: AudioStream
@@ -42,6 +50,7 @@ func add_new_to_pl(track: String):
   if !fail:
     temp.playback.stream = stream_temp
     temp.playback.stream_paused = $horcont/player/next/pause.button_pressed
+    temp.playback.playing = !$horcont/player/next/pause.button_pressed
     temp.track_label.text = track
     temp.looping.button_pressed = $horcont/player/next/loop.button_pressed
     temp.volume.value = $horcont/player/next/volume.value
@@ -53,12 +62,22 @@ func add_new_to_fl(file: String):
   temp.trackname_label.text = file
   temp.playbutton.connect("pressed", add_new_to_pl.bind(temp.trackname_label.text))
   temp.mvup.connect("pressed", func():
-    files.remove_at(temp.get_index())
-    files.insert(wrap(temp.get_index()-1, 0, len(files)), temp.trackname_label.text)
+    shift_array(files, files.find(temp.trackname_label.text), files.find(temp.trackname_label.text)-1)
+    filelist.move_child(temp, wrapi(
+        temp.get_index()-1,
+        0,
+        len(filelist.get_children())
+      )
+    )
   )
   temp.mvdown.connect("pressed", func():
-    files.remove_at(temp.get_index())
-    files.insert(wrap(temp.get_index()+1, 0, len(files)), temp.trackname_label.text)
+    shift_array(files, files.find(temp.trackname_label.text), files.find(temp.trackname_label.text)+1)
+    filelist.move_child(temp, wrapi(
+        temp.get_index()+1,
+        0,
+        len(filelist.get_children())
+      )
+    )
   )
   temp.rembutton.connect("pressed", func():
     files.erase(temp.trackname_label.text)
