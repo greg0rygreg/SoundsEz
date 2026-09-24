@@ -49,13 +49,12 @@ func add_new_to_pl(track: String):
   
   if !fail:
     temp.playback.stream = stream_temp
-    temp.playback.stream_paused = $horcont/player/next/pause.button_pressed
-    temp.playback.playing = !$horcont/player/next/pause.button_pressed
     temp.track_label.text = track
     temp.looping.button_pressed = $horcont/player/next/loop.button_pressed
     temp.volume.value = $horcont/player/next/volume.value
     temp.curtime_floating = brain.get_node("cur_time")
     playlist.add_child(temp)
+    temp.playback.stream_paused = $horcont/player/next/pause.button_pressed
 
 func add_new_to_fl(file: String):
   var temp := afs_scn.instantiate()
@@ -94,6 +93,7 @@ func reload_filelist():
     file.queue_free()
   for file: String in files:
     add_new_to_fl(file)
+  print("Total files: ", len(filelist.get_children()))
 
 func __ready():
   var temp_AF := FileAccess.open("user://audiofiles.json", FileAccess.READ)
