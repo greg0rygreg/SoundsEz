@@ -121,6 +121,7 @@ func __ready():
 
   $horcont/files/pl_actions/add.connect("pressed", brain.get_node("newaf").popup_centered)
   $horcont/files/pl_actions/reload.connect("pressed", reload_filelist)
+  get_tree().root.files_dropped.connect(_on_newaf_files_selected)
   $horcont/player/next/volume.value = brain.conf.get_value("Soundpad", "volume", 100)
   $horcont/player/next/loop.button_pressed = brain.conf.get_value("Soundpad", "loop", false)
   reload_filelist()
