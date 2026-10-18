@@ -354,19 +354,6 @@ theme_override_constants/margin_bottom = 8
 [node name="vercont" type="VBoxContainer" parent="tabs/sounds/horcont/files/toplay/scrollcont/margineer" unique_id=1628701509]
 layout_mode = 2
 
-[node name="pl_actions" type="HBoxContainer" parent="tabs/sounds/horcont/files" unique_id=734944502]
-layout_mode = 2
-
-[node name="add" type="Button" parent="tabs/sounds/horcont/files/pl_actions" unique_id=905345715]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "➕ Add new audio file(s)"
-
-[node name="reload" type="Button" parent="tabs/sounds/horcont/files/pl_actions" unique_id=1319392955]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "🔃 Reload list"
-
 [node name="slc_actions" type="HBoxContainer" parent="tabs/sounds/horcont/files" unique_id=454560399]
 layout_mode = 2
 
@@ -379,6 +366,14 @@ text = "▶️ Play Selected"
 layout_mode = 2
 size_flags_horizontal = 3
 text = "🗑️ Remove Selected"
+
+[node name="pl_actions" type="HBoxContainer" parent="tabs/sounds/horcont/files" unique_id=734944502]
+layout_mode = 2
+
+[node name="add" type="Button" parent="tabs/sounds/horcont/files/pl_actions" unique_id=905345715]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "➕ Add new audio file(s)"
 
 [node name="sep" type="VSeparator" parent="tabs/sounds/horcont" unique_id=1808355417]
 layout_mode = 2
