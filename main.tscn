@@ -605,7 +605,7 @@ icon = SubResource("AtlasTexture_w48qg")
 layout_mode = 2
 size_flags_vertical = 3
 tab_alignment = 1
-current_tab = 0
+current_tab = 2
 tab_0/title = "General"
 tab_0/icon = SubResource("AtlasTexture_vivmo")
 tab_1/title = "Text-to-Speech"
@@ -615,6 +615,7 @@ tab_2/title = "Soundpad"
 tab_2/icon = SubResource("AtlasTexture_yaehf")
 
 [node name="general" type="MarginContainer" parent="tabs/sets/vercont/setstabs" unique_id=576696497]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
@@ -674,7 +675,6 @@ metadata/_tab_index = 1
 metadata/_tab_name = "Text-to-Speech"
 
 [node name="soundpad" type="MarginContainer" parent="tabs/sets/vercont/setstabs" unique_id=1012698504]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
@@ -715,10 +715,6 @@ text = " (case sensitive:"
 layout_mode = 2
 button_pressed = true
 text = ")"
-
-[node name="playboth" type="CheckBox" parent="tabs/sets/vercont/setstabs/soundpad/vercont" unique_id=909531342]
-layout_mode = 2
-text = "Play on both selected output and 'Default' output"
 
 [node name="info" type="MarginContainer" parent="tabs" unique_id=398324980]
 visible = false
