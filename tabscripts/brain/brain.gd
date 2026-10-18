@@ -14,7 +14,7 @@ Made with L❤️VE by G.T. Greg Games
 
 # Features
 - TTS
-- Multiplatform (Linux, Windows)
+- Multiplatform (Linux, Windows, MacOS if you try but I doubt it works)
 - Sound management
 - Light mode (for whoever)
 - FitnessGram Pacer Test™ Transcription
@@ -48,9 +48,11 @@ Give SoundsEz permission to write in AppData or run it as administrator
 install it dude what are you doing
 
 ### 'Couldn't read user://audiofiles.json'
-Give SoundsEz permission to write in ~/.local/share or run it as superuser
+Give SoundsEz permission to write in `~/.local/share` or run it as superuser
 
 # Mentionables
+Don't alt+F4. Nothing will save.
+
 ## Windows
 Install VB-Audio Cable to be able to micspam to apps or something idk
 

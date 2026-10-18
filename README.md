@@ -9,7 +9,7 @@ Made with L❤️VE by G.T. Greg Games
 
 # Features
 - TTS
-- Multiplatform (Linux, Windows)
+- Multiplatform (Linux, Windows, MacOS if you try but I doubt it works)
 - Sound management
 - Light mode (for whoever)
 - FitnessGram Pacer Test™ Transcription
@@ -29,16 +29,16 @@ I'm greedy and I need TTS and soundpad in one program ONLY
 2. Download for your OS
 3. done
 
-## Advanced (compiling from source, unstablest)
+## Advanced (compiling from source, latest)
 ### Windows
-1. Install [Git](https://git-scm.com/install/windows) and download [Godot Game Engine](https://godotengine.org/download/archive/) version 4.8-dev6
+1. Install [Git](https://git-scm.com/install/windows) and download [Godot Game Engine](https://godotengine.org/download/archive/) version 4.8-beta1
 
 2. Open Godot, go online, make an empty project, download the Windows export templates and close Godot (you can delete the project you made)
 
 3. Put Godot in your desktop and run these Command Prompt/PowerShell/Terminal lines on your desktop
 ```cmd
 git clone https://github.com/greg0rygreg/SoundsEz.git
-.\Godot_v4.8-dev6_win64.exe --export-release win64 SoundsEz\project.godot SoundsEz.zip
+.\Godot_v4.8-beta1_win64.exe --export-release win64 SoundsEz\project.godot SoundsEz.zip
 ```
 
 ### Linux
@@ -48,14 +48,14 @@ On Arch, it should be something like this:
 ```sh
 sudo pacman -S git
 ```
-2. Download [Godot Game Engine](https://godotengine.org/download/archive/) version 4.8-dev6
+2. Download [Godot Game Engine](https://godotengine.org/download/archive/) version 4.8-beta1
 
 3. Open Godot, go online, make an empty project, download the Linux export templates and close Godot (you can delete the project you made)
 
 4. Put Godot in your desktop and run these shell lines on your desktop
 ```sh
 git clone https://github.com/greg0rygreg/SoundsEz.git
-./Godot_v4.8-dev6_linux.x86_64 --export-release linux SoundsEz/project.godot SoundsEz.zip
+./Godot_v4.8-beta1_linux.x86_64 --export-release linux SoundsEz/project.godot SoundsEz.zip
 ```
 
 # Troubleshooting
@@ -74,9 +74,11 @@ Give SoundsEz permission to write in AppData or run it as administrator
 install it dude what are you doing
 
 ### 'Couldn't read user://audiofiles.json'
-Give SoundsEz permission to write in ~/.local/share or run it as superuser
+Give SoundsEz permission to write in `~/.local/share` or run it as superuser
 
 # Mentionables
+Don't alt+F4. Nothing will save.
+
 ## Windows
 Install VB-Audio Cable to be able to micspam to apps or something idk
 
@@ -86,7 +88,7 @@ Install pactl (pulseaudio-utils for every distro on [command-not-found.com](http
 # TODO
 - [x] Make this readme pretty
 - [x] Make settings tab pretty
-- [ ] Fix some languages not being compatible with some variants
+- [ ] Fix some languages not being compatible with some variants (probably an error on my side)
 - [ ] Make loading times faster when lots of audio files have been loaded/reloaded (partially done)
 - [ ] Make light mode a theme and not a fucking shader??? lol????
 
