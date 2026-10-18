@@ -1,6 +1,15 @@
 [gd_scene format=3 uid="uid://dsj4aemyxqno4"]
 
 [ext_resource type="Script" uid="uid://cnufw1srjqdsp" path="res://audio_file_selection/AFS.gd" id="1_1n05e"]
+[ext_resource type="Texture2D" uid="uid://bata25i4b0nk3" path="res://other/icons.png" id="2_t1c4k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w48qg"]
+atlas = ExtResource("2_t1c4k")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vivmo"]
+atlas = ExtResource("2_t1c4k")
+region = Rect2(128, 0, 16, 16)
 
 [node name="AFS" type="PanelContainer" unique_id=1790219231 node_paths=PackedStringArray("tracklen_label", "selected", "trackname_label", "playbutton", "rembutton", "mvup", "mvdown")]
 script = ExtResource("1_1n05e")
@@ -48,12 +57,14 @@ layout_mode = 2
 [node name="play" type="Button" parent="margineer/horcont/vercont/actions" unique_id=1499660333]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "▶️ Play"
+text = "Play"
+icon = SubResource("AtlasTexture_w48qg")
 
 [node name="del" type="Button" parent="margineer/horcont/vercont/actions" unique_id=1495637139]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "🗑️ Remove"
+text = "Remove"
+icon = SubResource("AtlasTexture_vivmo")
 
 [node name="orderactions" type="VBoxContainer" parent="margineer/horcont" unique_id=544275841]
 layout_mode = 2

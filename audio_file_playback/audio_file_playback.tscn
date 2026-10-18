@@ -1,6 +1,15 @@
 [gd_scene format=3 uid="uid://bvghq327ugprf"]
 
 [ext_resource type="Script" uid="uid://b0fuwhv5xsa3q" path="res://audio_file_playback/AFP.gd" id="1_masti"]
+[ext_resource type="Texture2D" uid="uid://bata25i4b0nk3" path="res://other/icons.png" id="2_kpdsn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0qr3"]
+atlas = ExtResource("2_kpdsn")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s11b3"]
+atlas = ExtResource("2_kpdsn")
+region = Rect2(48, 0, 16, 16)
 
 [node name="AFP" type="PanelContainer" unique_id=1222477020 node_paths=PackedStringArray("playback", "track_label", "looping", "volume", "selected")]
 script = ExtResource("1_masti")
@@ -56,12 +65,14 @@ layout_mode = 2
 [node name="pause" type="Button" parent="margineer/vercont/ctrls" unique_id=702369438]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "⏯️ Pause/Resume"
+text = "Pause/Resume"
+icon = SubResource("AtlasTexture_o0qr3")
 
 [node name="stop" type="Button" parent="margineer/vercont/ctrls" unique_id=298381002]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "🛑 Stop"
+text = "Stop"
+icon = SubResource("AtlasTexture_s11b3")
 
 [node name="loop" type="CheckBox" parent="margineer/vercont/ctrls" unique_id=1847908017]
 layout_mode = 2

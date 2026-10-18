@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b4v3vtwu3o8am" path="res://tabscripts/brain/brain.gd" id="1_ig7tw"]
 [ext_resource type="Shader" uid="uid://ca81jef3a2thf" path="res://invert.gdshader" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://2n1dd7fw2nv0" path="res://tabscripts/tts.gd" id="2_h2yge"]
+[ext_resource type="Texture2D" uid="uid://bata25i4b0nk3" path="res://other/icons.png" id="2_w48qg"]
 [ext_resource type="Script" uid="uid://btx4vxqvpboxr" path="res://tabscripts/settings.gd" id="3_1bvp3"]
 [ext_resource type="Script" uid="uid://ddjj31wp82xbc" path="res://tabscripts/sounds.gd" id="3_7mycd"]
 [ext_resource type="Script" uid="uid://dbap0gqox0ty1" path="res://addons/markdownlabel/markdownlabel.gd" id="5_dg77c"]
@@ -13,6 +14,93 @@
 [ext_resource type="Script" uid="uid://dfr1w7u3jgni3" path="res://addons/markdownlabel/header_formats/h5_format.gd" id="10_yaehf"]
 [ext_resource type="Script" uid="uid://bsi6dexoofpe6" path="res://addons/markdownlabel/header_formats/h6_format.gd" id="11_074og"]
 [ext_resource type="Script" uid="uid://gau48dlko4ph" path="res://tabscripts/brain/cur_time.gd" id="13_ycdy4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_074og"]
+atlas = ExtResource("2_w48qg")
+region = Rect2(160, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cegan"]
+atlas = ExtResource("2_w48qg")
+region = Rect2(176, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_82xsv"]
+atlas = ExtResource("2_w48qg")
+region = Rect2(144, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_getpj"]
+atlas = ExtResource("2_w48qg")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1u8w0"]
+atlas = ExtResource("2_w48qg")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ryguw"]
+atlas = ExtResource("2_w48qg")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d13ii"]
+atlas = ExtResource("2_w48qg")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kq58d"]
+atlas = ExtResource("2_w48qg")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_seu75"]
+atlas = ExtResource("2_w48qg")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0odxb"]
+atlas = ExtResource("2_w48qg")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6jrf"]
+atlas = ExtResource("2_w48qg")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xuqvo"]
+atlas = ExtResource("2_w48qg")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsp4k"]
+atlas = ExtResource("2_w48qg")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lswn8"]
+atlas = ExtResource("2_w48qg")
+region = Rect2(224, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ycdy4"]
+atlas = ExtResource("2_w48qg")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w48qg"]
+atlas = ExtResource("2_w48qg")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vivmo"]
+atlas = ExtResource("2_w48qg")
+region = Rect2(144, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cqfq"]
+atlas = ExtResource("2_w48qg")
+region = Rect2(160, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yaehf"]
+atlas = ExtResource("2_w48qg")
+region = Rect2(176, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jei0x"]
+atlas = ExtResource("2_w48qg")
+region = Rect2(192, 0, 16, 16)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_w48qg"]
+load_path = "res://.godot/imported/icons.png-d93b3e26b259abe763313bdbdc77cd9c.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1t6ih"]
+atlas = SubResource("CompressedTexture2D_w48qg")
+region = Rect2(208, 0, 16, 16)
 
 [sub_resource type="Resource" id="Resource_cegan"]
 resource_local_to_scene = true
@@ -58,11 +146,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 tab_alignment = 1
-current_tab = 1
-tab_0/title = "🤖 Text-to-Speech"
-tab_1/title = "🔊 Soundpad"
-tab_2/title = "⚙️ Settings"
-tab_3/title = "ℹ️ Information"
+current_tab = 2
+tab_0/title = "Text-to-Speech"
+tab_0/icon = SubResource("AtlasTexture_074og")
+tab_1/title = "Soundpad"
+tab_1/icon = SubResource("AtlasTexture_cegan")
+tab_2/title = "Settings"
+tab_2/icon = SubResource("AtlasTexture_82xsv")
+tab_3/title = "Information"
+tab_3/icon = SubResource("AtlasTexture_getpj")
 
 [node name="tts" type="MarginContainer" parent="tabs" unique_id=1342100132]
 visible = false
@@ -73,7 +165,7 @@ theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 script = ExtResource("2_h2yge")
 metadata/_tab_index = 0
-metadata/_tab_name = "🤖 Text-to-Speech"
+metadata/_tab_name = "Text-to-Speech"
 
 [node name="horcont" type="HBoxContainer" parent="tabs/tts" unique_id=1715007392]
 layout_mode = 2
@@ -289,7 +381,8 @@ size_flags_vertical = 3
 
 [node name="clear" type="Button" parent="tabs/tts/horcont/vercont2" unique_id=985467208]
 layout_mode = 2
-text = "🗑️ Clear history"
+text = "Clear history"
+icon = SubResource("AtlasTexture_1u8w0")
 
 [node name="audio" type="HBoxContainer" parent="tabs/tts/horcont/vercont2" unique_id=2146484264]
 layout_mode = 2
@@ -297,14 +390,17 @@ layout_mode = 2
 [node name="play" type="Button" parent="tabs/tts/horcont/vercont2/audio" unique_id=1223445503]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "▶️ Make them Speak"
+text = "Make them Speak"
+icon = SubResource("AtlasTexture_ryguw")
 
 [node name="stop" type="Button" parent="tabs/tts/horcont/vercont2/audio" unique_id=1644165097]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "🛑 Silence Everyone"
+text = "Silence Everyone"
+icon = SubResource("AtlasTexture_d13ii")
 
 [node name="sounds" type="MarginContainer" parent="tabs" unique_id=491676046]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
@@ -312,7 +408,7 @@ theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 script = ExtResource("3_7mycd")
 metadata/_tab_index = 1
-metadata/_tab_name = "🔊 Soundpad"
+metadata/_tab_name = "Soundpad"
 
 [node name="horcont" type="HBoxContainer" parent="tabs/sounds" unique_id=405493484]
 layout_mode = 2
@@ -360,12 +456,14 @@ layout_mode = 2
 [node name="play" type="Button" parent="tabs/sounds/horcont/files/slc_actions" unique_id=2009369450]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "▶️ Play Selected"
+text = "Play Selected"
+icon = SubResource("AtlasTexture_kq58d")
 
 [node name="rem" type="Button" parent="tabs/sounds/horcont/files/slc_actions" unique_id=225434431]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "🗑️ Remove Selected"
+text = "Remove Selected"
+icon = SubResource("AtlasTexture_seu75")
 
 [node name="pl_actions" type="HBoxContainer" parent="tabs/sounds/horcont/files" unique_id=734944502]
 layout_mode = 2
@@ -373,7 +471,8 @@ layout_mode = 2
 [node name="add" type="Button" parent="tabs/sounds/horcont/files/pl_actions" unique_id=905345715]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "➕ Add new audio file(s)"
+text = "Add new audio file(s)"
+icon = SubResource("AtlasTexture_0odxb")
 
 [node name="sep" type="VSeparator" parent="tabs/sounds/horcont" unique_id=1808355417]
 layout_mode = 2
@@ -423,17 +522,20 @@ layout_mode = 2
 [node name="pauseall" type="Button" parent="tabs/sounds/horcont/player/globalctrl" unique_id=20332690]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "⏸️ Pause Selected"
+text = "Pause Selected"
+icon = SubResource("AtlasTexture_a6jrf")
 
 [node name="resumeall" type="Button" parent="tabs/sounds/horcont/player/globalctrl" unique_id=1860681653]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "▶️ Resume Selected"
+text = "Resume Selected"
+icon = SubResource("AtlasTexture_xuqvo")
 
 [node name="stopall" type="Button" parent="tabs/sounds/horcont/player/globalctrl" unique_id=1720587752]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "🛑 Stop Selected"
+text = "Stop Selected"
+icon = SubResource("AtlasTexture_qsp4k")
 
 [node name="next" type="HBoxContainer" parent="tabs/sounds/horcont/player" unique_id=1056657285]
 layout_mode = 2
@@ -469,10 +571,10 @@ text = ")"
 
 [node name="ohno" type="Button" parent="tabs/sounds/horcont/player" unique_id=211373410]
 layout_mode = 2
-text = "⚠️ Apply \"Next\" to selected audio files"
+text = "Apply \"Next\" to selected audio files"
+icon = SubResource("AtlasTexture_lswn8")
 
 [node name="sets" type="MarginContainer" parent="tabs" unique_id=247406521]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
@@ -480,7 +582,7 @@ theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 script = ExtResource("3_1bvp3")
 metadata/_tab_index = 2
-metadata/_tab_name = "⚙️ Settings"
+metadata/_tab_name = "Settings"
 
 [node name="vercont" type="VBoxContainer" parent="tabs/sets" unique_id=541744565]
 layout_mode = 2
@@ -491,31 +593,35 @@ alignment = 1
 
 [node name="apply" type="Button" parent="tabs/sets/vercont/actions" unique_id=274354298]
 layout_mode = 2
-text = "✅ Apply"
+text = "Apply"
+icon = SubResource("AtlasTexture_ycdy4")
 
 [node name="reset" type="Button" parent="tabs/sets/vercont/actions" unique_id=56962203]
 layout_mode = 2
-text = "🔃 Reset"
+text = "Reset"
+icon = SubResource("AtlasTexture_w48qg")
 
 [node name="setstabs" type="TabContainer" parent="tabs/sets/vercont" unique_id=1413707991]
 layout_mode = 2
 size_flags_vertical = 3
 tab_alignment = 1
-current_tab = 2
-tab_0/title = "⚙️ General"
-tab_1/title = "🤖 Text-to-Speech"
+current_tab = 0
+tab_0/title = "General"
+tab_0/icon = SubResource("AtlasTexture_vivmo")
+tab_1/title = "Text-to-Speech"
+tab_1/icon = SubResource("AtlasTexture_2cqfq")
 tab_1/disabled = true
-tab_2/title = "🔊 Soundpad"
+tab_2/title = "Soundpad"
+tab_2/icon = SubResource("AtlasTexture_yaehf")
 
 [node name="general" type="MarginContainer" parent="tabs/sets/vercont/setstabs" unique_id=576696497]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 metadata/_tab_index = 0
-metadata/_tab_name = "⚙️ General"
+metadata/_tab_name = "General"
 
 [node name="vercont" type="VBoxContainer" parent="tabs/sets/vercont/setstabs/general" unique_id=1465337144]
 layout_mode = 2
@@ -524,13 +630,23 @@ layout_mode = 2
 layout_mode = 2
 theme_override_constants/separation = 0
 
+[node name="Label2" type="Label" parent="tabs/sets/vercont/setstabs/general/vercont/theme" unique_id=1165681774]
+layout_mode = 2
+text = "Theme:"
+
 [node name="CheckButton" type="CheckButton" parent="tabs/sets/vercont/setstabs/general/vercont/theme" unique_id=938430802]
 layout_mode = 2
-text = "Theme: 🔅 Dark"
+text = "Dark"
+icon = SubResource("AtlasTexture_jei0x")
+
+[node name="TextureRect" type="TextureRect" parent="tabs/sets/vercont/setstabs/general/vercont/theme" unique_id=814154282]
+layout_mode = 2
+texture = SubResource("AtlasTexture_1t6ih")
+stretch_mode = 3
 
 [node name="Label" type="Label" parent="tabs/sets/vercont/setstabs/general/vercont/theme" unique_id=1001826850]
 layout_mode = 2
-text = "🔆 Light"
+text = " Light"
 
 [node name="outs" type="HBoxContainer" parent="tabs/sets/vercont/setstabs/general/vercont" unique_id=50084657]
 layout_mode = 2
@@ -555,16 +671,17 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 metadata/_tab_index = 1
-metadata/_tab_name = "🤖 Text-to-Speech"
+metadata/_tab_name = "Text-to-Speech"
 
 [node name="soundpad" type="MarginContainer" parent="tabs/sets/vercont/setstabs" unique_id=1012698504]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 metadata/_tab_index = 2
-metadata/_tab_name = "🔊 Soundpad"
+metadata/_tab_name = "Soundpad"
 
 [node name="vercont" type="VBoxContainer" parent="tabs/sets/vercont/setstabs/soundpad" unique_id=142424194]
 layout_mode = 2
@@ -599,6 +716,10 @@ layout_mode = 2
 button_pressed = true
 text = ")"
 
+[node name="playboth" type="CheckBox" parent="tabs/sets/vercont/setstabs/soundpad/vercont" unique_id=909531342]
+layout_mode = 2
+text = "Play on both selected output and 'Default' output"
+
 [node name="info" type="MarginContainer" parent="tabs" unique_id=398324980]
 visible = false
 layout_mode = 2
@@ -607,7 +728,7 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 metadata/_tab_index = 3
-metadata/_tab_name = "ℹ️ Information"
+metadata/_tab_name = "Information"
 
 [node name="MarkdownLabel" type="RichTextLabel" parent="tabs/info" unique_id=1714874206]
 layout_mode = 2
