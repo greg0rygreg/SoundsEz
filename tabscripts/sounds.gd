@@ -16,29 +16,21 @@ func _notification(what: int) -> void:
     #brain.data["sounds"]["loop"] = $horcont/player/next/loop.button_pressed
     brain.conf.set_value("Soundpad", "volume", $horcont/player/next/volume.value)
     brain.conf.set_value("Soundpad", "loop", $horcont/player/next/loop.button_pressed)
+    
+    for file: AudioFileSelection in filelist.get_children():
+      files.append(file.trackname_label.text)
     var temp_AF := FileAccess.open("user://audiofiles.json", FileAccess.WRITE)
     temp_AF.store_string(JSON.stringify(files, "  "))
     temp_AF.close()
-
-# clunky. Ew
-func shift_array(array: Array, from: int, to: int):
-  from = wrapi(from, 0, len(array))
-  to = wrapi(to, 0, len(array))
-  var temp = array[from]
-  array[from] = array[to]
-  array[to] = temp
 
 func add_new_to_pl(track: String):
   var temp: AudioFilePlayback = afp_scn.instantiate()
   var stream_temp: AudioStream
   var fail := false
   match track.get_extension():
-    "wav":
-      stream_temp = AudioStreamWAV.load_from_file(track)
-    "ogg":
-      stream_temp = AudioStreamOggVorbis.load_from_file(track)
-    "mp3":
-      stream_temp = AudioStreamMP3.load_from_file(track)
+    "wav": stream_temp = AudioStreamWAV.load_from_file(track)
+    "ogg": stream_temp = AudioStreamOggVorbis.load_from_file(track)
+    "mp3": stream_temp = AudioStreamMP3.load_from_file(track)
     _:
       EasyNotify.add_notification({
         "title": "what the fuck",
@@ -61,7 +53,6 @@ func add_new_to_fl(file: String):
   temp.trackname_label.text = file
   temp.playbutton.connect("pressed", add_new_to_pl.bind(temp.trackname_label.text))
   temp.mvup.connect("pressed", func():
-    shift_array(files, files.find(temp.trackname_label.text), files.find(temp.trackname_label.text)-1)
     filelist.move_child(temp, wrapi(
         temp.get_index()-1,
         0,
@@ -70,7 +61,6 @@ func add_new_to_fl(file: String):
     )
   )
   temp.mvdown.connect("pressed", func():
-    shift_array(files, files.find(temp.trackname_label.text), files.find(temp.trackname_label.text)+1)
     filelist.move_child(temp, wrapi(
         temp.get_index()+1,
         0,
@@ -79,21 +69,12 @@ func add_new_to_fl(file: String):
     )
   )
   temp.rembutton.connect("pressed", func():
-    files.erase(temp.trackname_label.text)
     temp.queue_free()
     for y: AudioFilePlayback in playlist.get_children():
       if y.track_label.text == temp.trackname_label.text:
         y.queue_free()
   )
   filelist.add_child(temp)
-
-func reload_filelist():
-  for file: AudioFileSelection in filelist.get_children():
-    filelist.remove_child(file)
-    file.queue_free()
-  for file: String in files:
-    add_new_to_fl(file)
-  print("Total files: ", len(filelist.get_children()))
 
 func __ready():
   var temp_AF := FileAccess.open("user://audiofiles.json", FileAccess.READ)
@@ -118,23 +99,27 @@ func __ready():
   if !OS.has_feature("editor"):
     files = files.filter(func(x: String): return !x.begins_with("res://"))
   files = files.filter(func(x: String): return FileAccess.file_exists(x))
+  for file: String in files:
+    add_new_to_fl(file)
+  print("Total files: ", len(filelist.get_children()))
+  files.clear()
 
   $horcont/files/pl_actions/add.connect("pressed", brain.get_node("newaf").popup_centered)
-  $horcont/files/pl_actions/reload.connect("pressed", reload_filelist)
   get_tree().root.files_dropped.connect(_on_newaf_files_selected)
   $horcont/player/next/volume.value = brain.conf.get_value("Soundpad", "volume", 100)
   $horcont/player/next/loop.button_pressed = brain.conf.get_value("Soundpad", "loop", false)
-  reload_filelist()
 
 func _ready() -> void:
   call_deferred("__ready")
 
 func _on_newaf_files_selected(paths: PackedStringArray) -> void:
+  var temp := []
+  for file: AudioFileSelection in filelist.get_children():
+    temp.append(file.trackname_label.text)
   for path in paths:
     match path.get_extension():
       "wav", "mp3", "ogg":
-        if path not in files:
-          files.append(path)
+        if path not in temp:
           add_new_to_fl(path)
       _:
         EasyNotify.add_notification({
@@ -144,17 +129,11 @@ func _on_newaf_files_selected(paths: PackedStringArray) -> void:
         })
 
 func _on_rem_pressed() -> void:
-  files = files.filter(
-    func(file):
-      var temp := []
-      for x: AudioFileSelection in filelist.get_children():
-        if !x.selected.button_pressed: continue
-        temp.append(x.trackname_label.text)
-        for y: AudioFilePlayback in playlist.get_children():
-          if y.track_label.text == x.trackname_label.text:
-            y.queue_free()
-      return not file in temp
-  )
+  for x: AudioFileSelection in filelist.get_children():
+    if !x.selected.button_pressed: continue
+    for y: AudioFilePlayback in playlist.get_children():
+      if y.track_label.text == x.trackname_label.text:
+        y.queue_free()
 
 func _on_play_pressed() -> void:
   for x: AudioFileSelection in filelist.get_children():
