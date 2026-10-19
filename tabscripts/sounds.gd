@@ -177,12 +177,13 @@ func _on_slc_search_submitted(new_text: String) -> void:
     var shooter := x.trackname_label.text \
       if brain.conf.get_value("Soundpad", "searchcase", true) \
       else x.trackname_label.text.to_lower()
-    x.visible = target == ""
-    match brain.conf.get_value("Soundpad", "searchtype", 0):
-      0: x.visible = fuzzy.search(target, shooter) != null
-      1: x.visible = target.is_subsequence_of(shooter)
-      2: x.visible = shooter.begins_with(target)
-      3: x.visible = target in shooter
+    if target != "":
+      match brain.conf.get_value("Soundpad", "searchtype", 0):
+        0: x.visible = fuzzy.search(target, shooter) != null
+        1: x.visible = target.is_subsequence_of(shooter)
+        2: x.visible = shooter.begins_with(target)
+        3: x.visible = target in shooter
+    else: x.visible = true
 
 func _on_pl_search_submitted(new_text: String) -> void:
   var target := new_text \
@@ -192,9 +193,10 @@ func _on_pl_search_submitted(new_text: String) -> void:
     var shooter := y.track_label.text \
       if brain.conf.get_value("Soundpad", "searchcase", true) \
       else y.track_label.text.to_lower()
-    y.visible = new_text == ""
-    match brain.conf.get_value("Soundpad", "searchtype", 0):
-      0: y.visible = fuzzy.search(target, shooter) != null
-      1: y.visible = target.is_subsequence_of(shooter)
-      2: y.visible = shooter.begins_with(target)
-      3: y.visible = target in shooter
+    if new_text != "":
+      match brain.conf.get_value("Soundpad", "searchtype", 0):
+        0: y.visible = fuzzy.search(target, shooter) != null
+        1: y.visible = target.is_subsequence_of(shooter)
+        2: y.visible = shooter.begins_with(target)
+        3: y.visible = target in shooter
+    else: y.visible = true

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cb6na1wfgwtah"]
 
-[ext_resource type="Script" uid="uid://d2qpeh1x7qoki" path="res://addons/easynotify/easynotify.gd" id="1_c6xwl"]
-[ext_resource type="Texture2D" uid="uid://i1lk8takxewo" path="res://icon.svg" id="2_pwb2y"]
+[ext_resource type="Script" uid="uid://cn2t6u8liv2tp" path="res://addons/easynotify/easynotify.gd" id="1_c6xwl"]
+[ext_resource type="Texture2D" uid="uid://8svsnotoy77x" path="res://icon.svg" id="2_pwb2y"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_mo55p"]
 line_spacing = -5.0
